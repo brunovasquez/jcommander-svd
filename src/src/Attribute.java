@@ -8,7 +8,6 @@ package SRC;
 import java.util.Objects;
 
 /**
- *
  * @author Daniel Gumucio
  * Attribute  represent  the  attribute  that could  have  a  file or  folder
  */
@@ -17,20 +16,21 @@ public class Attribute {
     public String valueAttribute;
     
     /**
-     * This  method  construct an Attribute     
+     * This  method  construct an Attribute    
+     * @param name of attribute
+     * @parame Value  of  attribute
      */
     public Attribute(String name, String value)
     {
         if(!(name.replaceAll("\\s","").isEmpty()))
         {
-            nameAttribute=name;
-            valueAttribute=value;
+            nameAttribute = name;
+            valueAttribute = value;
         }
         
     }
     
     /**
-     * 
      * @return  a  name  of  Attribute
      */
     public String getNameAttribute()
@@ -39,7 +39,6 @@ public class Attribute {
     }
     
     /**
-     * 
      *@return a Value  of  Attribute 
      */
     public String getValueAttribute()
@@ -78,9 +77,9 @@ public class Attribute {
     {
         boolean result= true;
         
-        if(!(other.getNameAttribute()instanceof String)|| !(other.getValueAttribute() instanceof String))
+        if(!(other.getNameAttribute() instanceof String)|| !(other.getValueAttribute() instanceof String))
         {
-           result=false;
+           result = false;
         }
         
         return result;
