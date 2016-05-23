@@ -22,22 +22,6 @@ public class AttributeTest {
     public AttributeTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
     @Test
     public void verifyAttributeIsCreatedWithNameAndValue() {
         Attribute attribute = new Attribute("ReadOnly","Enabled");
