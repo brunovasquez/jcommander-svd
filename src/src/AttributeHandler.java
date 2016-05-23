@@ -17,13 +17,13 @@ public class AttributeHandler {
     ArrayList<Attribute> listAttributes;
     /**
      * Construct  the  object  with list of  attributes
-     * @param listAttributes 
+     * @param listAttributes - arrayList
      */
     public AttributeHandler(ArrayList<Attribute> listAttributes)
     {
         if(!listAttributes.isEmpty())
         {
-            this.listAttributes= listAttributes;
+            this.listAttributes = listAttributes;
         }
     }
     
@@ -48,7 +48,7 @@ public class AttributeHandler {
     }
     
     /**
-     * Methos  to get All list of  attributes
+     * Method  to get All list of  attributes
      * @return 
      */
     public ArrayList<Attribute> getAllList()
@@ -64,9 +64,9 @@ public class AttributeHandler {
      */
     public Attribute getAttributeFromList(String nameAttribute)
     {
-       Attribute searched=null;
+       Attribute searched = null;
        int indexOfAttribute = searchAttribute(nameAttribute,this.listAttributes); 
-       if(indexOfAttribute!=-1)
+       if(indexOfAttribute != -1)
        {
             searched=this.listAttributes.get(indexOfAttribute);
        }
@@ -82,14 +82,14 @@ public class AttributeHandler {
      */
     private int searchAttribute(String nameAttribute, ArrayList<Attribute> listAttributesSearch)
     {
-        int index=-1;
+        int index = -1;
         if(!(nameAttribute.isEmpty() || listAttributesSearch.isEmpty())) 
         {
-            for (int i = 0; i < listAttributesSearch.size();i++)
+            for (int i = 0; i < listAttributesSearch.size(); i++)
             {
                 if(listAttributesSearch.get(i).getNameAttribute().equals(nameAttribute))
                 {
-                    index=i;
+                    index = i;
                 } 
             }
         }
