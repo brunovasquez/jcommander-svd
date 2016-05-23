@@ -17,8 +17,7 @@ import static org.junit.Assert.*;
 
 
 /**
- *
- * @author compu
+ *@author Daniel Gumucio
  */
 public class AttributeHandlerTest {
     
@@ -35,12 +34,12 @@ public class AttributeHandlerTest {
         listAttributes.add(attributeHidden);
                 
         AttributeHandler attributeHandler = new AttributeHandler(listAttributes);
-        boolean areAttributes=true;
-        for(int i=0;i<listAttributes.size();i++)
+        boolean areAttributes = true;
+        for(int i = 0;i < listAttributes.size(); i++)
         { 
             if(!(listAttributes.get(i).isAttribute(listAttributes.get(i))))
             {
-                areAttributes= false;
+                areAttributes = false;
             }
         }
         
@@ -88,7 +87,7 @@ public class AttributeHandlerTest {
         
         AttributeHandler attributeHandler = new AttributeHandler(listAttributes);
         
-        assertTrue(attributeHandler.getAllList().size()>0);
+        assertTrue(attributeHandler.getAllList().size() > 0);
     }
     
     @Test
