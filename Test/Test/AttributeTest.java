@@ -14,8 +14,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
- * @author compu
+ * Class in charge  to run unit  tests fro  Attribute Object
+ * @author Daniel Gumucio
  */
 public class AttributeTest {
     
