@@ -10,14 +10,14 @@ import java.util.ArrayList;
 
 /**
  * This object in charge  to manage  attributes
- * @author Jcomander-svd
+ * @author Daniel Gumucio
  */
 public class AttributeHandler {
     
     ArrayList<Attribute> listAttributes;
     /**
      * Construct  the  object  with list of  attributes
-     * @param listAttributes - arrayList
+     * @param listAttributes - arrayList of attributes
      */
     public AttributeHandler(ArrayList<Attribute> listAttributes)
     {
@@ -30,7 +30,7 @@ public class AttributeHandler {
     /**
      * Method to  add attributes from list
      * @param newAttribute
-     * @return 
+     * @return boolean
      */
     public boolean addNewAttribute(Attribute newAttribute)
     {
@@ -40,7 +40,7 @@ public class AttributeHandler {
     /**
      * Method to  delete attributes  from  list
      * @param otherAttribute
-     * @return 
+     * @return boolean
      */
     public boolean deleteAttribute(Attribute otherAttribute)
     {
@@ -49,7 +49,7 @@ public class AttributeHandler {
     
     /**
      * Method  to get All list of  attributes
-     * @return 
+     * @return ArrayList of  attributes
      */
     public ArrayList<Attribute> getAllList()
     {
