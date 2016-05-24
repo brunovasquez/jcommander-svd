@@ -72,14 +72,31 @@ public class BasicOperation {
         }
     }
     
+    /**
+     * Method to delete an Item
+     * @param source Name + source path for the file to be copied
+     * @return true, when the Item was deleted successfully
+      */
     public static boolean deleteItem(File source){
         return true;
     }
     
-    public static boolean moveItem(Object item, String path){
+    /**
+     * Method to move an Item to a new path 
+     * @param source Name + source path for the file to be moved
+     * @param target Name + target path for the file
+     * @return true, when an Item was moved to a new path successfully
+      */
+    public static boolean moveItem(File source, File target){
         return true;
     }
     
+    /**
+     * Method to Search an Item in a specific path.
+     * @param itemName Name of the item to be searched.
+     * @param path Path where search for the item.
+     * @return coincidences is a list of paths where the file was found.
+      */
     public static String[] searchItem(String itemName, String path){
         //return a list of paths
         String[] coincidences = new String[0];
