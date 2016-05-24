@@ -6,21 +6,19 @@
 package Utilities;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * @version 1.0
+ * @since   2016-05-22 
  * @author vania huayta
  */
 public class BasicOperationTest {
     @Test
     public void testCopyFileToAnotherPathWhereFileDoesNotExist(){
-        File source = new File("C:\\Users\\vania huayta\\Documents\\text.txt");
-        File target = new File("C:\\Users\\vania huayta\\Documents\\test\\text.txt");
+        File source = new File("C:\\Users\\Usuario\\Documents\\text.txt");
+        File target = new File("C:\\Users\\Usuario\\Documents\\test\\text.txt");
                 
         boolean result = BasicOperation.copyItem(source, target);
         
@@ -29,8 +27,8 @@ public class BasicOperationTest {
     
     @Test
     public void testCopyFileToAnotherPathWhereFileAlreadyExistAndReplace(){
-        File source = new File("C:\\Users\\vania huayta\\Documents\\test\\MenuBar.ctxt");
-        File target = new File("C:\\Users\\vania huayta\\Documents\\MenuBar.ctxt");
+        File source = new File("C:\\Users\\Usuario\\Documents\\text.txt");
+        File target = new File("C:\\Users\\Usuario\\Documents\\test\\text.txt");
         
         boolean result = BasicOperation.copyItem(source, target);
         
@@ -39,8 +37,8 @@ public class BasicOperationTest {
     
     @Test
     public void testCopyDirectoryToAnotherPath(){
-        File source = new File("C:\\Users\\vania huayta\\Documents\\test");
-        File target = new File("C:\\Users\\vania huayta\\Documents\\test2");
+        File source = new File("C:\\Users\\Usuario\\Documents\\test2");
+        File target = new File("C:\\Users\\Usuario\\Documents\\test8");
         
         boolean result = BasicOperation.copyItem(source, target);
         
