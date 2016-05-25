@@ -23,7 +23,7 @@ public class AttributeHandler {
     {
         if(!listAttributes.isEmpty())
         {
-            this.listAttributes= listAttributes;
+            this.listAttributes = listAttributes;
         }
     }
     
@@ -64,11 +64,11 @@ public class AttributeHandler {
      */
     public Attribute getAttributeFromList(String nameAttribute)
     {
-       Attribute searched=null;
-       int indexOfAttribute = searchAttribute(nameAttribute,this.listAttributes); 
-       if(indexOfAttribute!=-1)
+       Attribute searched = null;
+       int indexOfAttribute = searchAttribute(nameAttribute, this.listAttributes, 0); 
+       if(indexOfAttribute != -1)
        {
-            searched=this.listAttributes.get(indexOfAttribute);
+            searched = this.listAttributes.get(indexOfAttribute);
        }
        
        return searched;
@@ -80,22 +80,22 @@ public class AttributeHandler {
      * @param listAttributesSearch
      * @return the  index of attribute  in the  list
      */
-    private int searchAttribute(String nameAttribute, ArrayList<Attribute> listAttributesSearch)
+    private int searchAttribute(String nameAttribute, ArrayList<Attribute> listAttributesSearch, int indexList)
     {
-        int index=-1;
-        if(!(nameAttribute.isEmpty() || listAttributesSearch.isEmpty())) 
-        {
-            for (int i = 0; i < listAttributesSearch.size();i++)
-            {
-                if(listAttributesSearch.get(i).getNameAttribute().equals(nameAttribute))
-                {
-                    index=i;
-                } 
-            }
-        }
+        int indexResult = -1;
         
-        return index;
+        if(!(nameAttribute.isEmpty() || listAttributesSearch.isEmpty() || listAttributesSearch.size() <= indexList)) 
+        {
+           if(listAttributesSearch.get(indexList).getNameAttribute().equals(nameAttribute))
+            {
+                    indexResult = indexList;
+            }
+           else
+           {
+               indexList=indexList+1;
+               indexResult = searchAttribute(nameAttribute, listAttributesSearch, indexList);
+           }
+        }
+        return indexResult;
     }
-    
-    
 }

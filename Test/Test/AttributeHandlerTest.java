@@ -45,38 +45,40 @@ public class AttributeHandlerTest {
     @Test
     public void attributeHandlerHasListAttributes()
     {
-        Attribute attributeReadOnly = new  Attribute("ReadOnly","Enabled");
-        Attribute attributeHidden = new Attribute("Hidden","Disabled");
+        Attribute attributeReadOnly = new  Attribute("ReadOnly", "Enabled");
+        Attribute attributeHidden = new Attribute("Hidden", "Disabled");
         ArrayList<Attribute> listAttributes = new ArrayList<>() ;
         listAttributes.add(attributeReadOnly);
         listAttributes.add(attributeHidden);
                 
         AttributeHandler attributeHandler = new AttributeHandler(listAttributes);
-        boolean areAttributes=true;
-        for(int i=0;i<listAttributes.size();i++)
+        boolean areAttributes = true;
+        for(int i = 0; i < listAttributes.size(); i++)
         { 
             if(!(listAttributes.get(i).isAttribute(listAttributes.get(i))))
             {
-                areAttributes= false;
+                areAttributes = false;
             }
         }
         
-        assertTrue(attributeHandler.getAllList().size()>0 && areAttributes);
+        assertTrue(attributeHandler.getAllList().size() > 0 && areAttributes);
     }
     
     @Test
     public void addNewAttributeInList()
     {
-        Attribute attributeReadOnly = new  Attribute("ReadOnly","Enabled");
+        Attribute attributeReadOnly = new  Attribute("ReadOnly", "Enabled");
         ArrayList<Attribute> listAttributes = new ArrayList<>() ;
         listAttributes.add(attributeReadOnly);
-        assertEquals("ReadOnly",listAttributes.get(0).getNameAttribute());
+        assertEquals("ReadOnly", listAttributes.get(0).getNameAttribute());
     }
+    
+    
     @Test
     public void deleteAttributeFromTheList()
     {
-        Attribute attributeReadOnly = new  Attribute("ReadOnly","Enabled");
-        Attribute attributeHidden = new Attribute("Hidden","Disabled");
+        Attribute attributeReadOnly = new  Attribute("ReadOnly", "Enabled");
+        Attribute attributeHidden = new Attribute("Hidden", "Disabled");
         
         ArrayList<Attribute> listAttributes = new ArrayList<>() ;
         
@@ -87,16 +89,16 @@ public class AttributeHandlerTest {
         
         attributeHandler.deleteAttribute(attributeReadOnly);
         
-        
-        assertEquals(null,attributeHandler.getAttributeFromList("ReadOnly"));
+        assertEquals(null, attributeHandler.getAttributeFromList("ReadOnly"));
                
     }
+    
     
     @Test
     public void getAttributesList()
     {
-        Attribute attributeReadOnly = new  Attribute("ReadOnly","Enabled");
-        Attribute attributeHidden = new Attribute("Hidden","Disabled");
+        Attribute attributeReadOnly = new  Attribute("ReadOnly", "Enabled");
+        Attribute attributeHidden = new Attribute("Hidden", "Disabled");
         
         ArrayList<Attribute> listAttributes = new ArrayList<>() ;
         
@@ -105,14 +107,15 @@ public class AttributeHandlerTest {
         
         AttributeHandler attributeHandler = new AttributeHandler(listAttributes);
         
-        assertTrue(attributeHandler.getAllList().size()>0);
+        assertTrue(attributeHandler.getAllList().size() > 0);
     }
+    
     
     @Test
     public void searchEspecificAttributeFromList()
     {
-        Attribute attributeReadOnly = new  Attribute("ReadOnly","Enabled");
-        Attribute attributeHidden = new Attribute("Hidden","Disabled");
+        Attribute attributeReadOnly = new  Attribute("ReadOnly", "Enabled");
+        Attribute attributeHidden = new Attribute("Hidden", "Disabled");
         
         ArrayList<Attribute> listAttributes = new ArrayList<>() ;
         
@@ -129,8 +132,8 @@ public class AttributeHandlerTest {
     @Test
     public void searchAnAttributeThatDoesNotExistInList()
     {
-        Attribute attributeReadOnly = new  Attribute("ReadOnly","Enabled");
-        Attribute attributeHidden = new Attribute("Hidden","Disabled");
+        Attribute attributeReadOnly = new  Attribute("ReadOnly", "Enabled");
+        Attribute attributeHidden = new Attribute("Hidden", "Disabled");
         
         ArrayList<Attribute> listAttributes = new ArrayList<>() ;
         
