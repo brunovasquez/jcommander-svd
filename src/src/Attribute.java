@@ -12,17 +12,18 @@ import java.util.Objects;
  * Attribute  represent  the  attribute  that could  have  a  file or  folder
  */
 public class Attribute {
+    
     public String nameAttribute;
     public String valueAttribute;
     
     /**
-     * This  method  construct an Attribute    
-     * @param name of attribute
-     * @parame Value  of  attribute
+     * This  method  construct an Attribute 
+     * @param name String of attribute
+     * @param value String of  attribute
      */
     public Attribute(String name, String value)
     {
-        if(!(name.replaceAll("\\s","").isEmpty()))
+        if(!(name.replaceAll("\\s", "").isEmpty()))
         {
             nameAttribute = name;
             valueAttribute = value;
@@ -31,7 +32,8 @@ public class Attribute {
     }
     
     /**
-     * @return  a  name  of  Attribute
+     * Method to get name  of  Atribute
+     * @return an String a  name  of  Attribute
      */
     public String getNameAttribute()
     {
@@ -39,7 +41,8 @@ public class Attribute {
     }
     
     /**
-     *@return a Value  of  Attribute 
+     * Method to get value  of  Attribute
+     * @return an String Value  of  Attribute 
      */
     public String getValueAttribute()
     {
@@ -53,13 +56,13 @@ public class Attribute {
      */
     public  boolean setNameAttribute(String newNameAttribute)
     {
-        nameAttribute= newNameAttribute;
+        nameAttribute = newNameAttribute;
         return (nameAttribute == null ? newNameAttribute == null : nameAttribute.equals(newNameAttribute));
     }
     
     /**
      * This  method update  the  value of an Attribute
-     * @param newValueAttribute
+     * @param newValueAttribute String
      * @return boolean if value is  changed
      */
     public  boolean setValueAttribute(String newValueAttribute)
@@ -75,9 +78,9 @@ public class Attribute {
      */
     public boolean isAttribute(Attribute other)
     {
-        boolean result= true;
+        boolean result = true;
         
-        if(!(other.getNameAttribute() instanceof String)|| !(other.getValueAttribute() instanceof String))
+        if(!(other.getNameAttribute()instanceof String)|| !(other.getValueAttribute() instanceof String))
         {
            result = false;
         }
