@@ -6,24 +6,36 @@
 package Utilities;
 
 /**
- *
+ * Class to detect the OS platform where the Application is running
+ * 
+ * @version 1.0
+ * @since   2016-05-15 
  * @author vania huayta
  */
-public class DetectOS {
+class DetectOS {
     private static String OS = System.getProperty("os.name").toLowerCase();
 
-    public static boolean isWindows() {
-
+    /**
+     * Method that return "true" when the OS is equals to Windows.
+     * @return true when the OS is Windows.
+     */
+    static boolean isWindows() {
         return (OS.contains("win"));
     }
 
-    public static boolean isMac() {
-
+    /**
+     * Method that return "true" when the OS is equals to MacOS.
+     * @return true when the OS is MacOS.
+     */
+    static boolean isMac() {
         return (OS.contains("mac"));
     }
 
-    public static boolean isUnix() {
-
+    /**
+     * Method that return "true" when the OS is equals to Unix, Linux.
+     * @return true when the OS is Unix, Linux.
+     */
+    static boolean isUnix() {
         return (OS.contains("nux") || OS.contains("nix") || OS.contains("aix"));
     }
 }
