@@ -81,18 +81,15 @@ public class BasicOperation {
             }
         }
         
-        if (Arrays.equals(source.list(), target.list())) {
-            result = true;
-        } else if (target.exists()) {
+        if (Arrays.equals(source.list(), target.list()) && target.exists()) {
             result = true;
         }
-        
         return result;
     }
     
     /**
      * Method to delete an Item
-     * @param source Name + source path for the file to be copied
+     * @param item Name + source path for the file to be copied
      * @return true, when the Item was deleted successfully
       */
     public static boolean deleteItem(File item) {
