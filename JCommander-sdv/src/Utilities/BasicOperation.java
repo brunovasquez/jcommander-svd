@@ -32,12 +32,12 @@ public class BasicOperation {
      * @param target Name + target path for the file or directory
      * @return true when the Item was copied successfully.
      */
-    public static boolean copyItem(File source, File target){
+    public static boolean copyItem(File source, File target) {
         boolean result;
-        if(source.isFile()) {
+        if (source.isFile()) {
             result = copyFile(source, target);
         } else {
-            result = copyDirectory(source,target);
+            result = copyDirectory(source, target);
         }
         return result;
     }
@@ -48,7 +48,7 @@ public class BasicOperation {
      * @param target Name + target path for the file 
      * @return True when the file was copied successfully
      */
-    private static boolean copyFile(File source, File target){
+    private static boolean copyFile(File source, File target) {
         boolean result;
         try {
             //REPLACE_EXISTING should be editable
@@ -68,7 +68,7 @@ public class BasicOperation {
      * @param target Name + target path for the file
      * @return true when the directory was copied successfully
       */
-    private static boolean copyDirectory(File source, File target){
+    private static boolean copyDirectory(File source, File target) {
         if (!target.exists()) {
             target.mkdirs();
         }
@@ -83,10 +83,8 @@ public class BasicOperation {
         
         if (Arrays.equals(source.list(), target.list())) {
             result = true;
-        } else {
-            if (target.exists()){
-                result = true;
-            }
+        } else if (target.exists()) {
+            result = true;
         }
         
         return result;
@@ -97,6 +95,7 @@ public class BasicOperation {
      * @param item Name + source path for the file to be copied
      * @return true, when the Item was deleted successfully
       */
+<<<<<<< HEAD
     public static boolean deleteItem(File item){
         boolean result;
         if (item.isFile()) {
@@ -122,6 +121,10 @@ public class BasicOperation {
             result = true;
         }
         return result;
+=======
+    public static boolean deleteItem(File item) {
+        return true;
+>>>>>>> refs/remotes/origin/CopyItem
     }
     
     /**
@@ -130,7 +133,7 @@ public class BasicOperation {
      * @param target Name + target path for the file
      * @return true, when an Item was moved to a new path successfully
       */
-    public static boolean moveItem(File source, File target){
+    public static boolean moveItem(File source, File target) {
         return true;
     }
     
@@ -140,7 +143,7 @@ public class BasicOperation {
      * @param path Path where search for the item.
      * @return coincidences is a list of paths where the file was found.
       */
-    public static String[] searchItem(String itemName, String path){
+    public static String[] searchItem(String itemName, String path) {
         //return a list of paths
         String[] coincidences = new String[0];
         return coincidences;
