@@ -129,7 +129,12 @@ public class BasicOperation {
      * @return true, when an Item was moved to a new path successfully
       */
     public static boolean moveItem(File source, File target) {
-        return true;
+        boolean result = false;
+        if (copyItem(source, target)) {
+            deleteItem(source);
+            result = true;
+        }
+        return result;
     }
     
     /**
