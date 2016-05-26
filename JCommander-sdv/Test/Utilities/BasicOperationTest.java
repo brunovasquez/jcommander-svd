@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
  * @author vania huayta
  */
 public class BasicOperationTest {
-/*
+
     @Test
     public void testCopyFileToAnotherPathWhereFileDoesNotExist() 
             throws IOException {
@@ -72,7 +72,7 @@ public class BasicOperationTest {
         boolean result = BasicOperation.copyItem(source, target);
         
         assertTrue(result);
-    }*/
+    }
     
     @Test
     public void testDeleteSingleFile() throws IOException{
@@ -96,7 +96,31 @@ public class BasicOperationTest {
     }
     
     @Test
-    public void testDeleteDirectoryWithFiles() {
+    public void testDeleteDirectoryWithFiles() throws IOException {
+        File directory = new File("folderWithFiles");
+        directory.mkdir();
+        File file1 = new File(directory.getAbsolutePath(),"test1");
+        file1.createNewFile();
+        File file2 = new File(directory.getAbsolutePath(),"test2");
+        file2.createNewFile();
         
+        assertTrue (BasicOperation.deleteItem(directory));
+    }
+    
+    @Test
+    public void testDeleteDirectoryWithFilesAndFolders() throws IOException {
+        File directory = new File("folderWithFiles");
+        directory.mkdir();
+        File file1 = new File(directory.getAbsolutePath(),"test1");
+        file1.createNewFile();
+        File file2 = new File(directory.getAbsolutePath(),"test2");
+        file2.createNewFile();
+        
+        File subDirectory = new File(directory.getAbsolutePath(),"oneFolder");
+        subDirectory.mkdir();
+        File file3 = new File(subDirectory.getAbsolutePath(),"test3");
+        file3.createNewFile();
+        
+        assertTrue (BasicOperation.deleteItem(directory));
     }
 }

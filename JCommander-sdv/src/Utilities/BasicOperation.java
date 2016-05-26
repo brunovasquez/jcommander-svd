@@ -88,15 +88,13 @@ public class BasicOperation {
     
     /**
      * Method to delete an Item
-     * @param item Name + source path for the file to be copied
+     * @param item Name + source path for the file to be deleted
      * @return true, when the Item was deleted successfully
       */
-
     public static boolean deleteItem(File item){
         boolean result;
         if (item.isFile()) {
             item.delete();
-            System.out.println("File deleted");
             result = true;
         } else {
             result = deleteDirectory(item);
@@ -104,6 +102,11 @@ public class BasicOperation {
         return result;
     }
     
+    /**
+     * Method to delete a directory
+     * @param directory Name + source path for the file to be deleted
+     * @return true, when the directory was deleted successfully
+      */
     public static boolean deleteDirectory(File directory){
         boolean result;
         if (directory.list().length == 0) {
@@ -113,6 +116,7 @@ public class BasicOperation {
             for (String file : directory.list()) {
                 deleteItem(new File(directory.getAbsolutePath(),file));
             }
+            directory.delete();
             result = true;
         }
         return result;
