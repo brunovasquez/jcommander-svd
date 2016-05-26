@@ -16,14 +16,11 @@ import static org.junit.Assert.*;
  * @author vania huayta
  */
 public class BasicOperationTest {
-<<<<<<< HEAD
-    /*@Test
-    public void testCopyFileToAnotherPathWhereFileDoesNotExist() throws IOException{
-=======
+/*
     @Test
     public void testCopyFileToAnotherPathWhereFileDoesNotExist() 
             throws IOException {
->>>>>>> refs/remotes/origin/CopyItem
+
         File source = new File("test.txt");
         if (!source.exists()) {
             source.createNewFile();
@@ -89,12 +86,17 @@ public class BasicOperationTest {
     }
     
     @Test
-    public void testDeleteEmptyDirectory(){
+    public void testDeleteEmptyDirectory() {
         File emptyDirectory = new File("folderEmpty");
         emptyDirectory.mkdir();
                 
         boolean result = BasicOperation.deleteItem(emptyDirectory);
         
         assertTrue(result);
+    }
+    
+    @Test
+    public void testDeleteDirectoryWithFiles() {
+        
     }
 }

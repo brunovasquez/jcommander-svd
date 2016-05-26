@@ -92,7 +92,7 @@ public class BasicOperation {
      * @param item Name + source path for the file to be copied
      * @return true, when the Item was deleted successfully
       */
-<<<<<<< HEAD
+
     public static boolean deleteItem(File item){
         boolean result;
         if (item.isFile()) {
@@ -107,9 +107,8 @@ public class BasicOperation {
     
     public static boolean deleteDirectory(File directory){
         boolean result;
-        if (directory.list() == null) {
+        if (directory.list().length == 0) {
             directory.delete();
-            System.out.println("Directory deleted");
             result = true;
         } else {
             for (String file : directory.list()) {
@@ -118,10 +117,6 @@ public class BasicOperation {
             result = true;
         }
         return result;
-=======
-    public static boolean deleteItem(File item) {
-        return true;
->>>>>>> refs/remotes/origin/CopyItem
     }
     
     /**
