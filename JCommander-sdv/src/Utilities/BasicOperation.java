@@ -32,7 +32,7 @@ public class BasicOperation {
      * @param target Name + target path for the file or directory
      * @return true when the Item was copied successfully.
      */
-    public static boolean copyItem(File source, File target){
+    public static boolean copyItem(File source, File target) {
         boolean result;
         if(source.isFile()) {
             result = copyFile(source, target);
@@ -48,7 +48,7 @@ public class BasicOperation {
      * @param target Name + target path for the file 
      * @return True when the file was copied successfully
      */
-    private static boolean copyFile(File source, File target){
+    private static boolean copyFile(File source, File target) {
         boolean result;
         try {
             //REPLACE_EXISTING should be editable
@@ -68,7 +68,7 @@ public class BasicOperation {
      * @param target Name + target path for the file
      * @return true when the directory was copied successfully
       */
-    private static boolean copyDirectory(File source, File target){
+    private static boolean copyDirectory(File source, File target) {
         if (!target.exists()) {
             target.mkdirs();
         }
@@ -84,7 +84,7 @@ public class BasicOperation {
         if (Arrays.equals(source.list(), target.list())) {
             result = true;
         } else {
-            if (target.exists()){
+            if (target.exists()) {
                 result = true;
             }
         }
@@ -97,7 +97,7 @@ public class BasicOperation {
      * @param source Name + source path for the file to be copied
      * @return true, when the Item was deleted successfully
       */
-    public static boolean deleteItem(File source){
+    public static boolean deleteItem(File item) {
         return true;
     }
     
@@ -107,7 +107,7 @@ public class BasicOperation {
      * @param target Name + target path for the file
      * @return true, when an Item was moved to a new path successfully
       */
-    public static boolean moveItem(File source, File target){
+    public static boolean moveItem(File source, File target) {
         return true;
     }
     
@@ -117,7 +117,7 @@ public class BasicOperation {
      * @param path Path where search for the item.
      * @return coincidences is a list of paths where the file was found.
       */
-    public static String[] searchItem(String itemName, String path){
+    public static String[] searchItem(String itemName, String path) {
         //return a list of paths
         String[] coincidences = new String[0];
         return coincidences;

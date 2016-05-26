@@ -17,14 +17,15 @@ import static org.junit.Assert.*;
  */
 public class BasicOperationTest {
     @Test
-    public void testCopyFileToAnotherPathWhereFileDoesNotExist() throws IOException{
+    public void testCopyFileToAnotherPathWhereFileDoesNotExist() 
+            throws IOException {
         File source = new File("test.txt");
-        if (!source.exists()){
+        if (!source.exists()) {
             source.createNewFile();
         }
         File targetFolder = new File("folderTest");
         targetFolder.mkdir();
-        File target = new File(targetFolder.getAbsolutePath(),"test.txt");
+        File target = new File(targetFolder.getAbsolutePath(), "test.txt");
         
         boolean result = BasicOperation.copyItem(source, target);
         
@@ -32,15 +33,16 @@ public class BasicOperationTest {
     }
     
     @Test
-    public void testCopyFileToAnotherPathWhereFileAlreadyExistAndReplace() throws IOException{
+    public void testCopyFileToAnotherPathWhereFileAlreadyExistsAndReplace() 
+            throws IOException {
         File source = new File("test.txt");
-        if (!source.exists()){
+        if (!source.exists()) {
             source.createNewFile();
         }
         File targetFolder = new File("folderTest");
         targetFolder.mkdir();
-        File target = new File(targetFolder.getAbsolutePath(),"test.txt");
-        if (!target.exists()){
+        File target = new File(targetFolder.getAbsolutePath(), "test.txt");
+        if (!target.exists()) {
             BasicOperation.copyItem(source, target);
         }
         boolean result = BasicOperation.copyItem(source, target);
@@ -49,7 +51,7 @@ public class BasicOperationTest {
     }
     
     @Test
-    public void testCopyEmptyDirectoryToAnotherPath(){
+    public void testCopyEmptyDirectoryToAnotherPath() {
         File source = new File("folderEmpty");
         source.mkdir();
         File target = new File("folderTest" + File.separator + "folderEmpty");
@@ -60,7 +62,7 @@ public class BasicOperationTest {
     }
     
     @Test
-    public void testCopyDirectoryWhitFileAndEmptyDirectoryToAnotherPath(){
+    public void testCopyDirectoryWhitFileAndEmptyDirectoryToAnotherPath() {
         File source = new File("folderTest");
         source.mkdir();
         File target = new File("folderTest2");
