@@ -9,11 +9,12 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Basics operation to perform with a file or directory.
+ * Basics operation to perform with one file or directory selected.
  * - Copy one file/directory (implemented)
  * - Delete one file/directory (not yet)
  * - Move one file/directory (not yet)
@@ -33,12 +34,10 @@ public class BasicOperation {
      */
     public static boolean copyItem(File source, File target){
         boolean result;
-        if(source.isFile()){
-            copyFile(source, target);
-            result = true;
-        }else{
-            copyDirectory(source,target);
-            result = true;
+        if(source.isFile()) {
+            result = copyFile(source, target);
+        } else {
+            result = copyDirectory(source,target);
         }
         return result;
     }
@@ -47,14 +46,19 @@ public class BasicOperation {
      * Method to copy recursively a file.
      * @param source Name + source path for the file to be copied
      * @param target Name + target path for the file 
+     * @return True when the file was copied successfully
      */
-    private static void copyFile(File source, File target){
+    private static boolean copyFile(File source, File target){
+        boolean result;
         try {
             //REPLACE_EXISTING should be editable
             Files.copy(source.toPath(), target.toPath(), REPLACE_EXISTING);
+            result = true;
         } catch (IOException ex) {
             Logger.getLogger(BasicOperation.class.getName()).log(Level.SEVERE, null, ex);
+            result = false;
         }
+        return result;
     }
     
     /**
@@ -62,14 +66,30 @@ public class BasicOperation {
      * files and other directories. 
      * @param source Name + source path for the file to be copied
      * @param target Name + target path for the file
+     * @return true when the directory was copied successfully
       */
-    private static void copyDirectory(File source, File target){
+    private static boolean copyDirectory(File source, File target){
         if (!target.exists()) {
-            target.mkdir();
+            target.mkdirs();
         }
-        for (String file : source.list()) {
-            copyItem(new File(source, file), new File(target, file));
+        boolean result = false;
+        if (source.exists()) {
+            for (String file : source.list()) {
+                File sourceFile = new File(source, file);
+                File targetFile = new File(target, file);
+                copyItem(sourceFile, targetFile);
+            }
         }
+        
+        if (Arrays.equals(source.list(), target.list())) {
+            result = true;
+        } else {
+            if (target.exists()){
+                result = true;
+            }
+        }
+        
+        return result;
     }
     
     /**
