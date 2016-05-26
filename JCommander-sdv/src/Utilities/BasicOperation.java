@@ -34,10 +34,10 @@ public class BasicOperation {
      */
     public static boolean copyItem(File source, File target) {
         boolean result;
-        if(source.isFile()) {
+        if (source.isFile()) {
             result = copyFile(source, target);
         } else {
-            result = copyDirectory(source,target);
+            result = copyDirectory(source, target);
         }
         return result;
     }
@@ -83,10 +83,8 @@ public class BasicOperation {
         
         if (Arrays.equals(source.list(), target.list())) {
             result = true;
-        } else {
-            if (target.exists()) {
-                result = true;
-            }
+        } else if (target.exists()) {
+            result = true;
         }
         
         return result;
