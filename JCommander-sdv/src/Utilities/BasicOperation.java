@@ -94,11 +94,34 @@ public class BasicOperation {
     
     /**
      * Method to delete an Item
-     * @param source Name + source path for the file to be copied
+     * @param item Name + source path for the file to be copied
      * @return true, when the Item was deleted successfully
       */
-    public static boolean deleteItem(File source){
-        return true;
+    public static boolean deleteItem(File item){
+        boolean result;
+        if (item.isFile()) {
+            item.delete();
+            System.out.println("File deleted");
+            result = true;
+        } else {
+            result = deleteDirectory(item);
+        }
+        return result;
+    }
+    
+    public static boolean deleteDirectory(File directory){
+        boolean result;
+        if (directory.list() == null) {
+            directory.delete();
+            System.out.println("Directory deleted");
+            result = true;
+        } else {
+            for (String file : directory.list()) {
+                deleteItem(new File(directory.getAbsolutePath(),file));
+            }
+            result = true;
+        }
+        return result;
     }
     
     /**
