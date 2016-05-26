@@ -49,14 +49,13 @@ public class BasicOperation {
      * @return True when the file was copied successfully
      */
     private static boolean copyFile(File source, File target) {
-        boolean result;
+        boolean result = false;
         try {
-            //REPLACE_EXISTING should be editable
+            //TODO REPLACE_EXISTING should be editable
             Files.copy(source.toPath(), target.toPath(), REPLACE_EXISTING);
             result = true;
         } catch (IOException ex) {
             Logger.getLogger(BasicOperation.class.getName()).log(Level.SEVERE, null, ex);
-            result = false;
         }
         return result;
     }
