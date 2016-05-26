@@ -81,12 +81,9 @@ public class BasicOperation {
             }
         }
         
-        if (Arrays.equals(source.list(), target.list())) {
-            result = true;
-        } else if (target.exists()) {
+        if (Arrays.equals(source.list(), target.list()) && target.exists()) {
             result = true;
         }
-        
         return result;
     }
     
