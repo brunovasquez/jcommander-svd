@@ -6,6 +6,7 @@
 package Utilities;
 
 import java.io.File;
+import java.io.IOException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -16,19 +17,15 @@ import static org.junit.Assert.*;
  */
 public class BasicOperationTest {
     @Test
-    public void testCopyFileToAnotherPathWhereFileDoesNotExist(){
-        File source = new File("C:\\Users\\Usuario\\Documents\\text.txt");
-        File target = new File("C:\\Users\\Usuario\\Documents\\test\\text.txt");
-                
-        boolean result = BasicOperation.copyItem(source, target);
-        
-        assertTrue(result);
-    }
-    
-    @Test
-    public void testCopyFileToAnotherPathWhereFileAlreadyExistAndReplace(){
-        File source = new File("C:\\Users\\Usuario\\Documents\\text.txt");
-        File target = new File("C:\\Users\\Usuario\\Documents\\test\\text.txt");
+    public void testCopyFileToAnotherPathWhereFileDoesNotExist() 
+            throws IOException {
+        File source = new File("test.txt");
+        if (!source.exists()) {
+            source.createNewFile();
+        }
+        File targetFolder = new File("folderTest");
+        targetFolder.mkdir();
+        File target = new File(targetFolder.getAbsolutePath(), "test.txt");
         
         boolean result = BasicOperation.copyItem(source, target);
         
@@ -36,9 +33,39 @@ public class BasicOperationTest {
     }
     
     @Test
-    public void testCopyDirectoryToAnotherPath(){
-        File source = new File("C:\\Users\\Usuario\\Documents\\test2");
-        File target = new File("C:\\Users\\Usuario\\Documents\\test8");
+    public void testCopyFileToAnotherPathWhereFileAlreadyExistsAndReplace() 
+            throws IOException {
+        File source = new File("test.txt");
+        if (!source.exists()) {
+            source.createNewFile();
+        }
+        File targetFolder = new File("folderTest");
+        targetFolder.mkdir();
+        File target = new File(targetFolder.getAbsolutePath(), "test.txt");
+        if (!target.exists()) {
+            BasicOperation.copyItem(source, target);
+        }
+        boolean result = BasicOperation.copyItem(source, target);
+        
+        assertTrue(result);
+    }
+    
+    @Test
+    public void testCopyEmptyDirectoryToAnotherPath() {
+        File source = new File("folderEmpty");
+        source.mkdir();
+        File target = new File("folderTest" + File.separator + "folderEmpty");
+        
+        boolean result = BasicOperation.copyItem(source, target);
+        
+        assertTrue(result);
+    }
+    
+    @Test
+    public void testCopyDirectoryWhitFileAndEmptyDirectoryToAnotherPath() {
+        File source = new File("folderTest");
+        source.mkdir();
+        File target = new File("folderTest2");
         
         boolean result = BasicOperation.copyItem(source, target);
         
