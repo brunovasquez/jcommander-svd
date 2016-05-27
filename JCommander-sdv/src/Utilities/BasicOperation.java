@@ -68,10 +68,10 @@ public class BasicOperation {
      * @return true when the directory was copied successfully
       */
     private static boolean copyDirectory(File source, File target) {
+        boolean result = false;
         if (!target.exists()) {
             target.mkdirs();
         }
-        boolean result = false;
         if (source.exists()) {
             for (String file : source.list()) {
                 File sourceFile = new File(source, file);
@@ -91,11 +91,10 @@ public class BasicOperation {
      * @param item Name + source path for the file to be deleted
      * @return true, when the Item was deleted successfully
       */
-    public static boolean deleteItem(File item){
+    public static boolean deleteItem(File item) {
         boolean result;
         if (item.isFile()) {
-            item.delete();
-            result = true;
+            result = item.delete();
         } else {
             result = deleteDirectory(item);
         }
@@ -107,18 +106,14 @@ public class BasicOperation {
      * @param directory Name + source path for the file to be deleted
      * @return true, when the directory was deleted successfully
       */
-    public static boolean deleteDirectory(File directory){
+    public static boolean deleteDirectory(File directory) {
         boolean result;
-        if (directory.list().length == 0) {
-            directory.delete();
-            result = true;
-        } else {
+        if (directory.list().length != 0) {
             for (String file : directory.list()) {
-                deleteItem(new File(directory.getAbsolutePath(),file));
+                deleteItem(new File(directory.getAbsolutePath(), file));
             }
-            directory.delete();
-            result = true;
         }
+        result = directory.delete();
         return result;
     }
     

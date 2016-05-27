@@ -75,9 +75,9 @@ public class BasicOperationTest {
     }
     
     @Test
-    public void testDeleteSingleFile() throws IOException{
+    public void testDeleteSingleFile() throws IOException {
         File file = new File("test.txt");
-        if (!file.exists()){
+        if (!file.exists()) {
             file.createNewFile();
         }
         boolean result = BasicOperation.deleteItem(file);
@@ -99,29 +99,29 @@ public class BasicOperationTest {
     public void testDeleteDirectoryWithFiles() throws IOException {
         File directory = new File("folderWithFiles");
         directory.mkdir();
-        File file1 = new File(directory.getAbsolutePath(),"test1");
+        File file1 = new File(directory.getAbsolutePath(), "test1");
         file1.createNewFile();
-        File file2 = new File(directory.getAbsolutePath(),"test2");
+        File file2 = new File(directory.getAbsolutePath(), "test2");
         file2.createNewFile();
         
-        assertTrue (BasicOperation.deleteItem(directory));
+        assertTrue(BasicOperation.deleteItem(directory));
     }
     
     @Test
     public void testDeleteDirectoryWithFilesAndFolders() throws IOException {
         File directory = new File("folderWithFiles");
         directory.mkdir();
-        File file1 = new File(directory.getAbsolutePath(),"test1");
+        File file1 = new File(directory.getAbsolutePath(), "test1");
         file1.createNewFile();
-        File file2 = new File(directory.getAbsolutePath(),"test2");
+        File file2 = new File(directory.getAbsolutePath(), "test2");
         file2.createNewFile();
         
-        File subDirectory = new File(directory.getAbsolutePath(),"oneFolder");
+        File subDirectory = new File(directory.getAbsolutePath(), "oneFolder");
         subDirectory.mkdir();
-        File file3 = new File(subDirectory.getAbsolutePath(),"test3");
+        File file3 = new File(subDirectory.getAbsolutePath(), "test3");
         file3.createNewFile();
         
-        assertTrue (BasicOperation.deleteItem(directory));
+        assertTrue(BasicOperation.deleteItem(directory));
     }
     
     @Test
@@ -129,62 +129,62 @@ public class BasicOperationTest {
         File directory = new File("folderMove");
         directory.mkdir();
         
-        File subDirectory = new File(directory.getAbsolutePath(),"sourceFolder");
+        File subDirectory = new File(directory.getAbsolutePath(), "sourceFolder");
         subDirectory.mkdir();
         
-        File subDirectory2 = new File(directory.getAbsolutePath(),"targetFolder");
+        File subDirectory2 = new File(directory.getAbsolutePath(), "targetFolder");
         subDirectory2.mkdir();
         
-        File file = new File(subDirectory.getAbsolutePath(),"move");
+        File file = new File(subDirectory.getAbsolutePath(), "move");
         file.createNewFile();
         
-        File source = new File(subDirectory.getAbsolutePath(),file.getName());
-        File target = new File(subDirectory2.getAbsolutePath(),file.getName());
+        File source = new File(subDirectory.getAbsolutePath(), file.getName());
+        File target = new File(subDirectory2.getAbsolutePath(), file.getName());
         
-        assertTrue (BasicOperation.moveItem(source, target));
+        assertTrue(BasicOperation.moveItem(source, target));
     }
     
     @Test
     public void testMoveEmptyDirectory() {
         File directory = new File("folderMove");
-        if (!directory.exists()){
+        if (!directory.exists()) {
             directory.mkdir();
         }
-        File subDirectory = new File(directory.getAbsolutePath(),"sourceFolder");
+        File subDirectory = new File(directory.getAbsolutePath(), "sourceFolder");
         subDirectory.mkdir();
         
-        File subDirectory2 = new File(directory.getAbsolutePath(),"targetFolder");
+        File subDirectory2 = new File(directory.getAbsolutePath(), "targetFolder");
         subDirectory2.mkdir();
         
         File source = subDirectory;
-        File target = new File(subDirectory2.getAbsolutePath(),subDirectory.getName());
+        File target = new File(subDirectory2.getAbsolutePath(), subDirectory.getName());
         
-        assertTrue (BasicOperation.moveItem(source, target));
+        assertTrue(BasicOperation.moveItem(source, target));
     }
     
     @Test
     public void testMoveEmptyDirectoryWithFilesAndFolders() throws IOException {
         File directory = new File("folderMove");
-        if (!directory.exists()){
+        if (!directory.exists()) {
             directory.mkdir();
         }
-        File subDirectory = new File(directory.getAbsolutePath(),"sourceFolder");
+        File subDirectory = new File(directory.getAbsolutePath(), "sourceFolder");
         subDirectory.mkdir();
-        File file1 = new File(subDirectory.getAbsolutePath(),"move1");
+        File file1 = new File(subDirectory.getAbsolutePath(), "move1");
         file1.createNewFile();
-        File file2 = new File(subDirectory.getAbsolutePath(),"move2");
+        File file2 = new File(subDirectory.getAbsolutePath(), "move2");
         file2.createNewFile();
-        File secondSubDirectory = new File(subDirectory.getAbsolutePath(),"secondFolder");
+        File secondSubDirectory = new File(subDirectory.getAbsolutePath(), "secondFolder");
         secondSubDirectory.mkdir();
-        File file3 = new File(secondSubDirectory.getAbsolutePath(),"move3");
+        File file3 = new File(secondSubDirectory.getAbsolutePath(), "move3");
         file3.createNewFile();
         
-        File subDirectory2 = new File(directory.getAbsolutePath(),"targetFolder");
+        File subDirectory2 = new File(directory.getAbsolutePath(), "targetFolder");
         subDirectory2.mkdir();
         
         File source = subDirectory;
-        File target = new File(subDirectory2.getAbsolutePath(),subDirectory.getName());
+        File target = new File(subDirectory2.getAbsolutePath(), subDirectory.getName());
         
-        assertTrue (BasicOperation.moveItem(source, target));
+        assertTrue(BasicOperation.moveItem(source, target));
     }
 }
