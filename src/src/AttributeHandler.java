@@ -3,21 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package SRC;
+package src;
 
 import java.util.ArrayList;
 
 
 /**
  * This object in charge  to manage  attributes
- * @author Jcomander-svd
+ * @author Daniel Gumucio
  */
 public class AttributeHandler {
     
     ArrayList<Attribute> listAttributes;
     /**
      * Construct  the  object  with list of  attributes
-     * @param listAttributes 
+     * @param listAttributes it  is a  list of attributes 
      */
     public AttributeHandler(ArrayList<Attribute> listAttributes)
     {
@@ -29,8 +29,8 @@ public class AttributeHandler {
     
     /**
      * Method to  add attributes from list
-     * @param newAttribute
-     * @return 
+     * @param newAttribute it  is an Attribute object
+     * @return boolean true if attribute was  added to the  list
      */
     public boolean addNewAttribute(Attribute newAttribute)
     {
@@ -39,8 +39,8 @@ public class AttributeHandler {
     
     /**
      * Method to  delete attributes  from  list
-     * @param otherAttribute
-     * @return 
+     * @param otherAttribute It is an attribute object
+     * @return boolean true if  Attribute was  deleted from the list
      */
     public boolean deleteAttribute(Attribute otherAttribute)
     {
@@ -48,8 +48,8 @@ public class AttributeHandler {
     }
     
     /**
-     * Methos  to get All list of  attributes
-     * @return 
+     * Method  to get All list of  attributes
+     * @return ArrayList it  is  an ArrayList of  Attributes
      */
     public ArrayList<Attribute> getAllList()
     {
@@ -57,10 +57,10 @@ public class AttributeHandler {
     }
     
     /**
-     * method to get an especific  attribute from the  list
+     * Method to get an especific  attribute from the  list
      * for  this  use  another method search()
-     * @param nameAttribute
-     * @return Attribute object
+     * @param nameAttribute String  it is  the name of an Attribute
+     * @return Attribute object that has  that name
      */
     public Attribute getAttributeFromList(String nameAttribute)
     {
@@ -76,9 +76,10 @@ public class AttributeHandler {
     
     /**
      * Method to search  an  attribute  in the  list
-     * @param nameAttribute
-     * @param listAttributesSearch
-     * @return the  index of attribute  in the  list
+     * @param nameAttribute String It  is name of Attribute
+     * @param listAttributesSearch ArrayList It  is  the  ArrayList that contains all Attributes
+     * @param indexList int Integer number that represent  the index of  ArrayList
+     * @return the  index of attribute  in the  list, if  Attribute  does not  exist return -1
      */
     private int searchAttribute(String nameAttribute, ArrayList<Attribute> listAttributesSearch, int indexList)
     {
@@ -92,7 +93,7 @@ public class AttributeHandler {
             }
            else
            {
-               indexList=indexList+1;
+               indexList = indexList + 1;
                indexResult = searchAttribute(nameAttribute, listAttributesSearch, indexList);
            }
         }

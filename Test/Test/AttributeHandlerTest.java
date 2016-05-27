@@ -5,42 +5,18 @@
  */
 package Test;
 
-import SRC.Attribute;
-import SRC.AttributeHandler;
+import src.Attribute;
+import src.AttributeHandler;
 import java.util.ArrayList;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 
 /**
- *
- * @author compu
+ * Unit test for AttributeHandler
+ * @author Daniel Gumucio
  */
 public class AttributeHandlerTest {
-    
-    public AttributeHandlerTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
     
     @Test
     public void attributeHandlerHasListAttributes()
@@ -58,6 +34,7 @@ public class AttributeHandlerTest {
             if(!(listAttributes.get(i).isAttribute(listAttributes.get(i))))
             {
                 areAttributes = false;
+                break;
             }
         }
         

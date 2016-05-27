@@ -5,16 +5,12 @@
  */
 package Test;
 
-import SRC.Attribute;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import src.Attribute;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Class in charge  to run unit  tests fro  Attribute Object
+ * Unit tests for  Attribute Object
  * @author Daniel Gumucio
  */
 public class AttributeTest {

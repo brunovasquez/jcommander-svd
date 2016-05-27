@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package SRC;
-
-import java.util.Objects;
+package src;
 
 /**
  * @author Daniel Gumucio
@@ -18,8 +16,8 @@ public class Attribute {
     
     /**
      * This  method  construct an Attribute 
-     * @param name String of attribute
-     * @param value String of  attribute
+     * @param name String name of attribute
+     * @param value String  value of  attribute
      */
     public Attribute(String name, String value)
     {
@@ -33,7 +31,7 @@ public class Attribute {
     
     /**
      * Method to get name  of  Atribute
-     * @return an String a  name  of  Attribute
+     * @return an String that in this  case is the  name  of  Attribute
      */
     public String getNameAttribute()
     {
@@ -42,7 +40,7 @@ public class Attribute {
     
     /**
      * Method to get value  of  Attribute
-     * @return an String Value  of  Attribute 
+     * @return an String that in this  case is the Value  of  Attribute 
      */
     public String getValueAttribute()
     {
@@ -51,30 +49,38 @@ public class Attribute {
     
     /**
      * This  method update name of  an Attribute
-     * @param newNameAttribute
+     * @param newNameAttribute is  an  String  that  contains  the  new  name
      * @return boolean - true if  the  name was  changed
      */
     public  boolean setNameAttribute(String newNameAttribute)
     {
-        nameAttribute = newNameAttribute;
-        return (nameAttribute == null ? newNameAttribute == null : nameAttribute.equals(newNameAttribute));
+        if(!(newNameAttribute.replaceAll("\\s", "").isEmpty()))
+        {
+            nameAttribute = newNameAttribute;
+        }
+        
+        return nameAttribute.equals(newNameAttribute);
     }
     
     /**
      * This  method update  the  value of an Attribute
-     * @param newValueAttribute String
-     * @return boolean if value is  changed
+     * @param newValueAttribute String that  contains  the new  value  of  attribute
+     * @return boolean is  true if value is  changed
      */
     public  boolean setValueAttribute(String newValueAttribute)
     {
-        valueAttribute = newValueAttribute;
-        return (valueAttribute == null ? newValueAttribute == null : valueAttribute.equals(newValueAttribute));
+        if(!(newValueAttribute.replaceAll("\\s", "").isEmpty()))
+        {
+             valueAttribute = newValueAttribute;
+        }
+        
+        return valueAttribute.equals(newValueAttribute);
     }
     
     /**
-     * Method  that see if  it is  an attribute
-     * @param other
-     * @return 
+     * Method  that see if  it is  an attribute object
+     * @param other is  an  attribute  object
+     * @return boolean true  if object is  attribute
      */
     public boolean isAttribute(Attribute other)
     {
@@ -87,7 +93,4 @@ public class Attribute {
         
         return result;
     }
-    
-    
- 
 }
