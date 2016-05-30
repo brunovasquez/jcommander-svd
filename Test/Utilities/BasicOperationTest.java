@@ -116,7 +116,7 @@ public class BasicOperationTest {
         File file2 = new File(directory.getAbsolutePath(), "test2");
         file2.createNewFile();
         
-        File subDirectory = new File(directory.getAbsolutePath(), "oneFolder");
+        File subDirectory = new File(directory.getAbsolutePath(), "subDirectory");
         subDirectory.mkdir();
         File file3 = new File(subDirectory.getAbsolutePath(), "test3");
         file3.createNewFile();
@@ -129,17 +129,17 @@ public class BasicOperationTest {
         File directory = new File("folderMove");
         directory.mkdir();
         
-        File subDirectory = new File(directory.getAbsolutePath(), "sourceFolder");
-        subDirectory.mkdir();
+        File sourceFolder = new File(directory.getAbsolutePath(), "sourceFolder");
+        sourceFolder.mkdir();
         
-        File subDirectory2 = new File(directory.getAbsolutePath(), "targetFolder");
-        subDirectory2.mkdir();
+        File targetFolder = new File(directory.getAbsolutePath(), "targetFolder");
+        targetFolder.mkdir();
         
-        File file = new File(subDirectory.getAbsolutePath(), "move");
+        File file = new File(sourceFolder.getAbsolutePath(), "move");
         file.createNewFile();
         
-        File source = new File(subDirectory.getAbsolutePath(), file.getName());
-        File target = new File(subDirectory2.getAbsolutePath(), file.getName());
+        File source = new File(sourceFolder.getAbsolutePath(), file.getName());
+        File target = new File(targetFolder.getAbsolutePath(), file.getName());
         
         assertTrue(BasicOperation.moveItem(source, target));
     }
@@ -150,14 +150,14 @@ public class BasicOperationTest {
         if (!directory.exists()) {
             directory.mkdir();
         }
-        File subDirectory = new File(directory.getAbsolutePath(), "sourceFolder");
-        subDirectory.mkdir();
+        File sourceFolder = new File(directory.getAbsolutePath(), "sourceFolder");
+        sourceFolder.mkdir();
         
-        File subDirectory2 = new File(directory.getAbsolutePath(), "targetFolder");
-        subDirectory2.mkdir();
+        File targetFolder = new File(directory.getAbsolutePath(), "targetFolder");
+        targetFolder.mkdir();
         
-        File source = subDirectory;
-        File target = new File(subDirectory2.getAbsolutePath(), subDirectory.getName());
+        File source = sourceFolder;
+        File target = new File(targetFolder.getAbsolutePath(), sourceFolder.getName());
         
         assertTrue(BasicOperation.moveItem(source, target));
     }
@@ -168,22 +168,22 @@ public class BasicOperationTest {
         if (!directory.exists()) {
             directory.mkdir();
         }
-        File subDirectory = new File(directory.getAbsolutePath(), "sourceFolder");
-        subDirectory.mkdir();
-        File file1 = new File(subDirectory.getAbsolutePath(), "move1");
+        File sourceFolder = new File(directory.getAbsolutePath(), "sourceFolder");
+        sourceFolder.mkdir();
+        File file1 = new File(sourceFolder.getAbsolutePath(), "move1");
         file1.createNewFile();
-        File file2 = new File(subDirectory.getAbsolutePath(), "move2");
+        File file2 = new File(sourceFolder.getAbsolutePath(), "move2");
         file2.createNewFile();
-        File secondSubDirectory = new File(subDirectory.getAbsolutePath(), "secondFolder");
+        File secondSubDirectory = new File(sourceFolder.getAbsolutePath(), "secondFolder");
         secondSubDirectory.mkdir();
         File file3 = new File(secondSubDirectory.getAbsolutePath(), "move3");
         file3.createNewFile();
         
-        File subDirectory2 = new File(directory.getAbsolutePath(), "targetFolder");
-        subDirectory2.mkdir();
+        File targetFolder = new File(directory.getAbsolutePath(), "targetFolder");
+        targetFolder.mkdir();
         
-        File source = subDirectory;
-        File target = new File(subDirectory2.getAbsolutePath(), subDirectory.getName());
+        File source = sourceFolder;
+        File target = new File(targetFolder.getAbsolutePath(), sourceFolder.getName());
         
         assertTrue(BasicOperation.moveItem(source, target));
     }

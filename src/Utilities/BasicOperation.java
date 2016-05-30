@@ -92,9 +92,16 @@ public class BasicOperation {
      * @return true, when the Item was deleted successfully
       */
     public static boolean deleteItem(File item) {
-        boolean result;
+        boolean result = false;
         if (item.isFile()) {
-            result = item.delete();
+            try {
+                Files.delete(item.toPath());
+            } catch (NoSuchFileException ex) {
+                Logger.getLogger(BasicOperation.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                // File permission problems are caught here.
+                Logger.getLogger(BasicOperation.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
             result = deleteDirectory(item);
         }
