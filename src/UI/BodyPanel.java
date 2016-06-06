@@ -84,6 +84,7 @@ public class BodyPanel extends JPanel {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
             };
