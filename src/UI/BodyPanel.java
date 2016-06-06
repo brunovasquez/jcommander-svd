@@ -3,6 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package UI;
+
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -38,7 +40,6 @@ public class BodyPanel extends JPanel {
         tableLeft = new javax.swing.JTable();
         jScrollPaneRigth = new javax.swing.JScrollPane();
         tableRigth = new javax.swing.JTable();
-
         
         this.setLayout(new java.awt.BorderLayout());
 
@@ -82,7 +83,6 @@ public class BodyPanel extends JPanel {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
             };
@@ -174,7 +174,7 @@ public class BodyPanel extends JPanel {
     
     /**
      * Method to list all files of a given path 
-     * @param pathFile where the items will be retrieved
+     * @param pathFile where the items will be retrieved 
      */
     public void listFiles(String pathFile) {
         Path path = Paths.get(pathFile);
