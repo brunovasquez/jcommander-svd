@@ -16,13 +16,13 @@ import java.util.logging.Logger;
  * @since   2016-05-29 
  * @author vania huayta
  */
-class RunCommand {
+public class RunCommand {
     /**
      * Method to run a command 
      * @param command String that contains the command to be executed
      * @return true or false, depends on the running process
      */
-    static boolean run(String command) {
+    public static boolean run(String command) {
         boolean result = false;
         try {
             Process process = Runtime.getRuntime().exec(command);
