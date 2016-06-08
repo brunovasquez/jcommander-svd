@@ -75,16 +75,15 @@ public class BasicOperationTest {
     }
     
     @Test
-    public void testDeleteSingleFile() throws IOException {
-        File file = new File("test.txt");
-        if (!file.exists()) {
-            file.createNewFile();
-        }
-        boolean result = BasicOperation.deleteItem(file);
+    public void testDeleteSingleFile(){
+        File directory = new File("folderTest");
+        directory.mkdir();
+        File file = new File(directory.getAbsoluteFile(), "testDelete.txt");
+        BasicOperation.createFile(file.getName(), directory);
         
-        assertTrue(result);
+        assertTrue(BasicOperation.deleteItem(file));
     }
-    
+  
     @Test
     public void testDeleteEmptyDirectory() {
         File emptyDirectory = new File("folderEmpty");
@@ -186,5 +185,129 @@ public class BasicOperationTest {
         File target = new File(targetFolder.getAbsolutePath(), sourceFolder.getName());
         
         assertTrue(BasicOperation.moveItem(source, target));
+    }
+    
+    @Test
+    public void testCreateNewFile() throws IOException {
+        File directory = new File("directory");
+        directory.mkdir();
+        File fileToCreate = new File(directory.getAbsoluteFile(), "file.txt");
+        
+        assertTrue(BasicOperation.createFile(fileToCreate.getName(), directory));
+        assertTrue(fileToCreate.exists());
+        
+        fileToCreate.delete();
+    }
+    
+    @Test
+    public void testCreateNewFileWithANameOfFileThatAlreadyExist() {
+        File directory = new File("directory");
+        directory.mkdir();
+        File fileToCreate = new File(directory.getAbsoluteFile(), "file.txt");
+        //First line to  create so file will exit
+        BasicOperation.createFile(fileToCreate.getName(), directory);
+        
+        assertFalse(BasicOperation.createFile(fileToCreate.getName(), directory));
+        
+        fileToCreate.delete();
+    }
+    
+    @Test
+    public void testCreateNewFileWithSpecialCharactersInName() {
+        File directory = new File("directory");
+        directory.mkdir();
+        File fileToCreate = new File(directory.getAbsoluteFile(), "f#$%^&*h");
+        
+        assertFalse(BasicOperation.createFile(fileToCreate.getName(), directory));
+        
+        if (fileToCreate.exists()) {
+            fileToCreate.delete();
+        }
+    }
+    
+    @Test
+    public void testCreateDirectory() {
+        File directory = new File("directory");
+        directory.mkdir();
+        File directoryToCreate = new File(directory.getAbsoluteFile(), "directoryToCreated");
+        
+        assertTrue(BasicOperation.createDirectory(directoryToCreate.getName(), directory));
+        assertTrue(directoryToCreate.exists());
+        
+        directoryToCreate.delete();
+    }
+    
+    @Test
+    public void testCreateNewDirectoryWithANameOfFileThatAlreadyExist() {
+        File directory = new File("directory");
+        directory.mkdir();
+        File directoryToCreate = new File(directory.getAbsoluteFile(), "directoryToCreated");
+        BasicOperation.createDirectory(directoryToCreate.getName(), directory);
+                
+        assertFalse(BasicOperation.createDirectory(directoryToCreate.getName(), directory));
+        
+        directoryToCreate.delete();
+    }
+    
+    @Test
+    public void testCreateNewDirectoryWithSpecialCharactersInName() {
+        File directory = new File("directory");
+        directory.mkdir();
+        File directoryToCreate = new File(directory.getAbsoluteFile(), "f#$%^&*h");
+        
+        assertFalse(BasicOperation.createFile(directoryToCreate.getName(), directory));
+        
+        if (directoryToCreate.exists()) {
+            directoryToCreate.delete();
+        }
+    }
+    
+    @Test
+    public void testRenameFile() {
+        File directory = new File("directory");
+        directory.mkdir();
+        File oldFileName = new File(directory.getAbsoluteFile(), "oldFileName.txt");
+        File newFileName = new File(directory.getAbsoluteFile(), "newFileName.txt");
+        BasicOperation.createFile(oldFileName.getName(), directory);
+        
+        assertTrue(BasicOperation.renameItem(oldFileName, newFileName));
+        assertTrue(newFileName.exists());
+        
+    }
+    
+    @Test
+    public void testRenameFileWithSpecialCharactersName() {
+        File directory = new File("directory");
+        directory.mkdir();
+        File oldFileName = new File(directory.getAbsoluteFile(), "oldFileName.txt");
+        File newFileName = new File(directory.getAbsoluteFile(), "n@#$%^&*e.txt");
+        BasicOperation.createFile(oldFileName.getName(), directory);
+        
+        assertFalse(BasicOperation.renameItem(oldFileName, newFileName));
+        assertFalse(newFileName.exists());
+    }
+    
+    @Test
+    public void testRenameDirectory() {
+        File directory = new File("directory");
+        directory.mkdir();
+        File oldDirectoryName = new File(directory.getAbsoluteFile(), "oldFileName");
+        File newDirectoryName = new File(directory.getAbsoluteFile(), "newFileName");
+        BasicOperation.createDirectory(oldDirectoryName.getName(), directory);
+        
+        assertTrue(BasicOperation.renameItem(oldDirectoryName, newDirectoryName));
+        assertTrue(newDirectoryName.exists());
+    }
+    
+    @Test
+    public void testRenameDirectoryWithSpecialCharactersName() {
+        File directory = new File("directory");
+        directory.mkdir();
+        File oldDirectoryName = new File(directory.getAbsoluteFile(), "oldFileName");
+        File newDirectoryName = new File(directory.getAbsoluteFile(), "n?:<>e");
+        BasicOperation.createDirectory(oldDirectoryName.getName(), directory);
+        
+        assertFalse(BasicOperation.renameItem(oldDirectoryName, newDirectoryName));
+        assertFalse(newDirectoryName.exists());
     }
 }

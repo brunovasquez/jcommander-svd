@@ -95,7 +95,7 @@ public class BasicOperation {
         boolean result = false;
         if (item.isFile()) {
             try {
-                Files.delete(item.toPath());
+                result = Files.deleteIfExists(item.toPath());
             } catch (NoSuchFileException ex) {
                 Logger.getLogger(BasicOperation.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
@@ -140,14 +140,45 @@ public class BasicOperation {
     }
     
     /**
-     * Method to Search an Item in a specific path.
-     * @param itemName Name of the item to be searched.
-     * @param path Path where search for the item.
-     * @return coincidences is a list of paths where the file was found.
-      */
-    public static String[] searchItem(String itemName, String path) {
-        //return a list of paths
-        String[] coincidences = new String[0];
-        return coincidences;
+     * 
+     * @param name
+     * @param path
+     * @return 
+     */
+    public static boolean createFile(String name, File path){
+        boolean result = false;
+        File newFile = new File (path.getAbsolutePath(), name);
+        try {
+            result = newFile.createNewFile();
+        } catch (IOException ex) {
+            Logger.getLogger(BasicOperation.class.getName()).log(Level.SEVERE, "It was not possible to create the file", ex);
+        }
+        return result;
+    }
+    
+    /**
+     * 
+     * @param name
+     * @param path
+     * @return 
+     */
+    public static boolean createDirectory(String name, File path){
+        File newDirectory = new File (path.getAbsolutePath(), name);
+        boolean result = false;
+        if (!newDirectory.exists())
+            result = newDirectory.mkdir();
+        
+        return result;
+    }
+    
+    /**
+     * 
+     * @param oldItem
+     * @param newItem
+     * @return 
+     */
+    public static boolean renameItem(File oldItem, File newItem) {
+        oldItem.renameTo(newItem);
+        return newItem.exists();
     }
 }
