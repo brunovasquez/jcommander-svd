@@ -5,7 +5,9 @@
  */
 package Utilities;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,19 +19,43 @@ import java.util.logging.Logger;
  * @author vania huayta
  */
 public class RunCommand {
+    
     /**
-     * Method to run a command 
+     * Method to run a command in Windows Machine
      * @param command String that contains the command to be executed
-     * @return true or false, depends on the running process
+     * @return result message from the command execution, it will be empty if the command didn't worked
      */
-    public static boolean run(String command) {
-        boolean result = false;
-        try {
-            Process process = Runtime.getRuntime().exec(command);
-            result = process.isAlive();
-        } catch (IOException ex) {
-            Logger.getLogger(RunCommand.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+    static String runCommandWindows(String command) {        
+        String line;  
+        String result = "";
+        String executeCmd = "cmd /c" + " " + command;             
+        Process runtimeProcess;
+        try {                           
+                runtimeProcess = Runtime.getRuntime().exec(executeCmd);
+                runtimeProcess.waitFor();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(runtimeProcess.getInputStream()));
+                line = reader.readLine();
+                while (line != null) {
+                    if (result.compareTo("") == 0)
+                        result = line;
+                    else
+                        result = result +"\n"+line;
+                    line = reader.readLine();                                        
+                }
+        } catch (IOException | InterruptedException e) {
+            Logger.getLogger(RunCommand.class.getName()).log(Level.SEVERE, "Error to execute command on windows: ", e);
+        }                
+        return result;
+    }
+    
+    /**
+     * Method to run a command in Windows Machine
+     * @param command String that contains the command to be executed
+     * @return result message from the command execution, it will be empty if the command didn't worked
+     */
+    static String runCommandLinux(String command) {        
+        //TODO complete Run command for Linux machines
+        String result = "";
         return result;
     }
 }
