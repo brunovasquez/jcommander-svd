@@ -140,10 +140,10 @@ public class BasicOperation {
     }
     
     /**
-     * 
-     * @param name
-     * @param path
-     * @return 
+     * Method to create a single file with extension in a path specified
+     * @param name String that contains the name of the file to be created
+     * @param path File with the path where the new file will be created.
+     * @return true if the file was created without errors, false if it was not possible to create the file.
      */
     public static boolean createFile(String name, File path){
         boolean result = false;
@@ -157,10 +157,10 @@ public class BasicOperation {
     }
     
     /**
-     * 
-     * @param name
-     * @param path
-     * @return 
+     * Method to create a single directory in a path specified.
+     * @param name String that contains the name of the directory to be created.
+     * @param path File with the path where the new directory will be created.
+     * @return true if the directory was created without errors, false if it the directory already exists.
      */
     public static boolean createDirectory(String name, File path){
         File newDirectory = new File (path.getAbsolutePath(), name);
@@ -172,10 +172,10 @@ public class BasicOperation {
     }
     
     /**
-     * 
-     * @param oldItem
-     * @param newItem
-     * @return 
+     * Method to rename an item, it works for single file or directory
+     * @param oldItem File that contains the path and old name of the file.
+     * @param newItem File that contains the path and the new name of the file.
+     * @return true if the file with the new name exists
      */
     public static boolean renameItem(File oldItem, File newItem) {
         oldItem.renameTo(newItem);
