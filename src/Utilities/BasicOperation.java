@@ -160,7 +160,7 @@ public class BasicOperation {
      * Method to create a single directory in a path specified.
      * @param name String that contains the name of the directory to be created.
      * @param path File with the path where the new directory will be created.
-     * @return true if the directory was created without errors, false if it the directory already exists.
+     * @return true if the directory was created without errors, false if the directory already exists.
      */
     public static boolean createDirectory(String name, File path){
         File newDirectory = new File (path.getAbsolutePath(), name);
@@ -172,13 +172,14 @@ public class BasicOperation {
     }
     
     /**
-     * Method to rename an item, it works for single file or directory
+     * Method to rename an item, it works for single file or directory.
+     * Old file is deleted from the system.
      * @param oldItem File that contains the path and old name of the file.
      * @param newItem File that contains the path and the new name of the file.
-     * @return true if the file with the new name exists
+     * @return true if the file with the new name exists.
      */
     public static boolean renameItem(File oldItem, File newItem) {
-        oldItem.renameTo(newItem);
-        return newItem.exists();
+        boolean result = oldItem.renameTo(newItem);
+        return (result &&(!oldItem.exists()));
     }
 }
