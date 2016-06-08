@@ -27,7 +27,7 @@ public class RunCommand {
      * @param command String that contains the command to be executed
      * @return result message from the command execution, it will be empty if the command didn't worked
      */
-    static String runCommandWindows(String command) {        
+    public static String runCommandWindows(String command) {        
         String line;  
         String result = "";
         String executeCmd = "cmd /c" + " " + command;             
@@ -41,7 +41,7 @@ public class RunCommand {
                     if (result.compareTo("") == 0)
                         result = line;
                     else
-                        result = result +"\n"+line;
+                        result = result + "\n" + line;
                     line = reader.readLine();                                        
                 }
         } catch (IOException | InterruptedException e) {
@@ -59,7 +59,7 @@ public class RunCommand {
      * @param hostname String for the server hostname to be used to execute the command
      * @return 
      */
-    static String runCommandLinux(String userName, String password, int portServer, String command, String hostname) {        
+    public static String runCommandLinux(String userName, String password, int portServer, String command, String hostname) {        
         String result = "";
         JSch js = new JSch();        
         try{
@@ -77,14 +77,13 @@ public class RunCommand {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(objChanelExec.getInputStream()));
                 String line;
                 while ((line = reader.readLine()) != null) {
-                    result= result + line +"\n"; 
+                    result= result + line + "\n"; 
                 }
                 objChanelExec.disconnect();
                 session.disconnect();
         }catch (JSchException | IOException ex)
         {            
             Logger.getLogger(RunCommand.class.getName()).log(Level.SEVERE, "It was not possible execute command remotely on Linux machine, exception: {0}", ex.toString());
-            result = null;
         }
         return result;
     }
