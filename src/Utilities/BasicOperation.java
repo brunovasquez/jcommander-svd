@@ -179,7 +179,10 @@ public class BasicOperation {
      * @return true if the file with the new name exists.
      */
     public static boolean renameItem(File oldItem, File newItem) {
-        boolean result = oldItem.renameTo(newItem);
-        return (result &&(!oldItem.exists()));
+        boolean result = false;
+        if (!newItem.exists())
+            result = oldItem.renameTo(newItem);
+        
+        return (result && (!oldItem.exists()));
     }
 }

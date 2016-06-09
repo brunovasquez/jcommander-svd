@@ -310,4 +310,24 @@ public class BasicOperationTest {
         assertFalse(BasicOperation.renameItem(oldDirectoryName, newDirectoryName));
         assertFalse(newDirectoryName.exists());
     }
+    
+    @Test
+    public void testRenameDirectoryThatContainsFiles() throws IOException {
+        File directory = new File("directoryOld");
+        directory.mkdir();
+        File file1 = new File(directory.getAbsolutePath(), "test1");
+        file1.createNewFile();
+        File file2 = new File(directory.getAbsolutePath(), "test2");
+        file2.createNewFile();
+        
+        File subDirectory = new File(directory.getAbsolutePath(), "subDirectory");
+        subDirectory.mkdir();
+        File file3 = new File(subDirectory.getAbsolutePath(), "test3");
+        file3.createNewFile();
+        
+        File newName = new File("directoryChanged");
+        
+        assertTrue(BasicOperation.renameItem(directory, newName));
+        assertTrue(newName.exists());
+    }
 }
