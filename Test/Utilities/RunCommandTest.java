@@ -40,4 +40,11 @@ public class RunCommandTest {
         
         folderToTest.delete();
     }
+    
+    @Test
+    public void testRunLsCommandLinux() {
+        String result = RunCommand.runCommandLinux("root", "bobbit", 22, "whoami", "10.230.216.33");
+        System.out.println(result);
+        assertNotEquals(result,"");
+    }
 }

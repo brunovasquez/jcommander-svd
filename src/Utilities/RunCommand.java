@@ -62,7 +62,7 @@ public class RunCommand {
     public static String runCommandLinux(String userName, String password, int portServer, String command, String hostname) {        
         String result = "";
         JSch js = new JSch();        
-        try{
+        try {
                 Session session = js.getSession(userName, hostname, portServer);
                 session.setPassword(password);
                 Properties config = new Properties();
@@ -81,9 +81,8 @@ public class RunCommand {
                 }
                 objChanelExec.disconnect();
                 session.disconnect();
-        }catch (JSchException | IOException ex)
-        {            
-            Logger.getLogger(RunCommand.class.getName()).log(Level.SEVERE, "It was not possible execute command remotely on Linux machine, exception: {0}", ex.toString());
+        }catch (JSchException | IOException ex) {            
+            Logger.getLogger(RunCommand.class.getName()).log(Level.SEVERE, "It was not possible execute command remotely on Linux machine, exception: {0}", ex);
         }
         return result;
     }
