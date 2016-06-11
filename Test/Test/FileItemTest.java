@@ -29,6 +29,7 @@ import src.FileItem;*/
  */
 public class FileItemTest {
     
+   
    @Test
    public void createAFile()
    {
@@ -49,8 +50,8 @@ public class FileItemTest {
    public void VerifyCreateItemListingFiles()
     {
         Path path = Paths.get(File.listRoots()[0].getAbsolutePath());
-        File f = path.toFile();
-        File[] files = f.listFiles();
+        File file = path.toFile();
+        File[] files = file.listFiles();
         ArrayList<FileItem> items = new ArrayList<>();
         
         for (int index = 0; index < files.length; index++) 
@@ -101,9 +102,66 @@ public class FileItemTest {
                 
        AttributeHandler attributeList = new AttributeHandler(listAttributes);
        
-       FileItem fileItem = new FileItem("test", File.listRoots()[0].getAbsolutePath(), 0, attributeList, ".txt");
+       FileItem fileItem = new FileItem("test",File.listRoots()[0].getAbsolutePath(), 0, attributeList, ".txt");
        fileItem.setExtension(".doc");
        
        assertEquals(".doc", fileItem.getExtension());
    }
+   
+   @Test
+   public void setNameOfFile()
+   {
+       Attribute attributeReadOnly = new  Attribute("ReadOnly", "Enabled");
+       Attribute attributeHidden = new Attribute("Hidden", "Disabled");
+       ArrayList<Attribute> listAttributes = new ArrayList<>() ;
+       listAttributes.add(attributeReadOnly);
+       listAttributes.add(attributeHidden);
+                
+       AttributeHandler attributeList = new AttributeHandler(listAttributes);
+       
+       FileItem fileItem = new FileItem("test", File.listRoots()[0].getAbsolutePath(), 0, attributeList, ".txt");
+       fileItem.setFileName("newTEST");
+       
+       assertEquals("newTEST", fileItem.getName());
+   }
+    
+    @Test
+   public void setLocationOfFile()
+   {
+       Attribute attributeReadOnly = new  Attribute("ReadOnly", "Enabled");
+       Attribute attributeHidden = new Attribute("Hidden", "Disabled");
+       ArrayList<Attribute> listAttributes = new ArrayList<>() ;
+       listAttributes.add(attributeReadOnly);
+       listAttributes.add(attributeHidden);
+                
+       AttributeHandler attributeList = new AttributeHandler(listAttributes);
+       
+       FileItem fileItem = new FileItem("test", File.listRoots()[0].getAbsolutePath(), 0, attributeList, ".txt");
+       
+       File newDirectory = new File (File.listRoots()[0].getAbsolutePath(), "testFolder");
+       newDirectory.mkdir();
+       
+       fileItem.setFileLocation(newDirectory.getAbsolutePath());
+       
+       assertEquals(newDirectory.getAbsolutePath(), fileItem.getLocation());
+   }
+    
+    /* TODO unit test for set attribute
+   @Test
+   public void setAttributeOfFile()
+   {
+       Attribute attributeReadOnly = new  Attribute("ReadOnly", "Disabled");
+       Attribute attributeHidden = new Attribute("Hidden", "Disabled");
+       ArrayList<Attribute> listAttributes = new ArrayList<>() ;
+       listAttributes.add(attributeReadOnly);
+       listAttributes.add(attributeHidden);
+                
+       AttributeHandler attributeList = new AttributeHandler(listAttributes);
+       
+       FileItem fileItem = new FileItem("test", "F:\\", 0, attributeList, ".txt");
+       
+       Attribute attributeReadOnlyFalse = new  Attribute("ReadOnly", "Enabled");
+       
+       assertTrue(fileItem.setFileAttribute(attributeReadOnlyFalse));
+   }*/
 }

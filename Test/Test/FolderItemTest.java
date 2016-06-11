@@ -1,4 +1,3 @@
-
 package Test;
 
 import java.io.File;
@@ -39,8 +38,8 @@ public class FolderItemTest {
    public void VerifyCreateItemListingFolders()
     {
         Path path = Paths.get(File.listRoots()[0].getAbsolutePath());
-        File f = path.toFile();
-        File[] files = f.listFiles();
+        File folder = path.toFile();
+        File[] files = folder.listFiles();
         ArrayList<FolderItem> items = new ArrayList<>();
         
         for (int index = 0; index < files.length; index++) 
@@ -78,9 +77,9 @@ public class FolderItemTest {
        FolderItem folderItem = new FolderItem("testFolder", File.listRoots()[0].getAbsolutePath()+"testfolder", 0, attributeList );
        
        Path path = Paths.get(folderItem.getLocation());
-       File f = path.toFile();
-       File[] files = f.listFiles();
-       f.delete();
+       File folder = path.toFile();
+       File[] files = folder.listFiles();
+       folder.delete();
               
        assertTrue(folderItem.getItemList()==null);
    }
@@ -105,8 +104,8 @@ public class FolderItemTest {
        //Cleanning the folder after  testing, maybe  this  should be part of  other method from this  class
        
        Path path = Paths.get(folderItem.getLocation());
-       File f = path.toFile();
-       File[] files = f.listFiles();
+       File folder = path.toFile();
+       File[] files = folder.listFiles();
        
        for(int iterator = 0; iterator < files.length; iterator++)
        {
