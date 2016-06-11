@@ -13,10 +13,11 @@ import static org.junit.Assert.*;
  * @author vania huayta
  */
 public class RunCommandTest {
+    /*
     @Test
     public void testRunCommandWindows() {
         String command = "cmd /c start cmd.exe";
                 
         assertTrue(RunCommand.run(command));
-    }
+    }*/
 }
