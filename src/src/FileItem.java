@@ -1,8 +1,8 @@
-
 package src;
 
 import Utilities.BasicOperation;
 import java.io.File;
+
 /**
  * Class in charge  to map file object that extend  of Item 
  * @author Daniel Gumucio
@@ -33,7 +33,7 @@ public class FileItem extends Item {
     {
         super(fileName, location, fileSize, attributesFile);
         extension = fileExtension;   
-        BasicOperation.createFile(this.getName(), new File(this.getLocation()));
+        BasicOperation.createFile(this.getName()+extension, new File(location));
     }
         
     /**
@@ -52,12 +52,10 @@ public class FileItem extends Item {
      */
     public boolean setExtension(String newExtension)
     {
-        if(!(newExtension.replaceAll("\\s", "").isEmpty()))
-        {
-             this.extension = newExtension;
-        }
-        
-        return this.extension.equals(newExtension);
+        boolean extensionChange = BasicOperation.renameItem(new File(this.getLocation()+this.getName()+this.getExtension()),
+                new File(this.getLocation()+this.getName()+ newExtension));
+        this.extension = newExtension;
+        return (this.extension.equals(newExtension) && extensionChange) ;
     }
     
     /**
@@ -75,6 +73,74 @@ public class FileItem extends Item {
         return isFile;
     }
     
+    /**
+     * This method set  the fileName
+     * @param newName String  that contains  the  new  name of  filename
+     * @return boolean  true if  name  was  changed  sucessfully
+     */
+    public boolean setFileName(String newName)
+    {
+        boolean nameChange = BasicOperation.renameItem(new File(this.getLocation() + this.getName() + this.getExtension()),
+                new File(this.getLocation() + newName + this.getExtension() ));
+        this.setName(newName);
+        
+        return (this.getName().equals(newName) && nameChange);
+    }
+    
+    /**
+     * This  method is in charge to move file to other  location
+     * @param newLocation String  that  contains new  location
+     * @return boolean is  true if  file  was  moved
+     */
+    public boolean setFileLocation(String newLocation)
+    {
+        File fileSource = new File(this.getLocation()+this.getName()+this.getExtension());
+        File fileTarget = new File(newLocation+ File.separator + this.getName()+ this.getExtension());
+        
+        return BasicOperation.moveItem(fileSource, fileTarget) && this.setLocation(newLocation);
+    }
+    
+    /**
+     * This method is in charge  to  update  the  Size of  file
+     * @return boolean true if  size  was  changed
+     */
+    public boolean updateSize()
+    {
+        File file = new File(this.getLocation()+this.getName()+this.getExtension());
+        this.setSize(file.length());
+        return this.getSize()==file.length();
+    }
+    
+    /* TODO need  to  change attributes of file
+    public boolean setFileAttribute(Attribute attributeUpdated)
+    {
+        boolean attributeBoolUpdated = false;
+        File file = new File(this.getLocation()+this.getName()+this.getExtension());
+        
+        if(attributeUpdated.getNameAttribute().equals("ReadOnly"))
+        {
+            if(attributeUpdated.getValueAttribute().equals("Enabled"))
+            {
+                attributeBoolUpdated = file.setReadable(true) && this.setAttributes(attributeUpdated);
+            }
+            else
+            {
+                attributeBoolUpdated = file.setReadable(false) && this.setAttributes(attributeUpdated);
+            } 
+        }
+        else
+        {
+            if(attributeUpdated.getValueAttribute().equals("Enabled"))
+            {
+                 attributeBoolUpdated = file.setWritable(true) && this.setAttributes(attributeUpdated);
+            }
+            else
+            {
+                attributeBoolUpdated = file.setWritable(false) && this.setAttributes(attributeUpdated);
+            }
+        }
+        return attributeBoolUpdated;
+    }*/
     /**
      * Method to get the  file extension
      * @param file File - File of  filesystem 

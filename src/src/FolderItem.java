@@ -1,4 +1,3 @@
-
 package src;
 
 import Utilities.BasicOperation;
@@ -40,6 +39,43 @@ public class FolderItem extends Item {
         BasicOperation.createDirectory(this.getName(),new File(this.getLocation()));
     }
     
+    /**
+     * This method is in charge to update the  folder name
+     * @param newFolderName String  that  contains  the new name
+     * @return boolean true if  name  is  changed  success
+     */
+    public boolean setFolderName(String newFolderName)
+    {
+        boolean nameChange = BasicOperation.renameItem(new File(this.getLocation() + this.getName()),
+                new File(this.getLocation() + newFolderName ));
+        this.setName(newFolderName);
+        
+        return (this.getName().equals(newFolderName) && nameChange);
+    }
+    
+    /**
+     * This  method is in charge to move folder to other  location
+     * @param newLocation String  that  contains new  location
+     * @return boolean is  true if  folder  was  moved
+     */
+    public boolean setFolderLocation(String newLocation)
+    {
+        File folderSource = new File(this.getLocation()+this.getName());
+        File folderTarget = new File(newLocation+ File.separator + this.getName());
+        
+        return BasicOperation.moveItem(folderSource, folderTarget) && this.setLocation(newLocation);
+    }
+    
+    /**
+     * This method is in charge  to  update  the  Size of  folder
+     * @return boolean true if  size  was  changed
+     */
+    public boolean updateSize()
+    {
+        File folder = new File(this.getLocation()+this.getName());
+        this.setSize(folder.length());
+        return this.getSize()==folder.length();
+    }
     /**
      * Method  to get  the  list of items  of  folder
      * @return ArrayList  of  items that exist in a folder
