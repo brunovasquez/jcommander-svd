@@ -6,7 +6,7 @@
 package UI;
 
 /**
- * Class to define the main JFrame
+ *
  * @author Shirley Pinto
  */
 public class MainContainer {

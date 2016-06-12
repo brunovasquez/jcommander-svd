@@ -8,16 +8,13 @@ package UI;
 import javax.swing.JMenuBar;
 
 /**
- * Class to define the Menu Bar's components
+ *
  * @author Shirley Pinto
  */
-class MenuBar extends JMenuBar {
+class MenuBar extends JMenuBar{
     private javax.swing.JMenu jMenuEdit;
     private javax.swing.JMenu jMenuFile;
 
-    /**
-     * Main method where the menu bar's components are defined: File and Edit
-     */
     public MenuBar() {
         
         jMenuFile = new javax.swing.JMenu();
@@ -28,5 +25,8 @@ class MenuBar extends JMenuBar {
 
         jMenuEdit.setText("Edit");
         this.add(jMenuEdit);
+
     }
+    
+    
 }

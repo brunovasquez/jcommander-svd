@@ -1,235 +1,341 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package UI;
 
+import java.awt.BorderLayout;
 import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.util.Date;
-import javax.swing.JPanel;
+import javax.swing.*;
+
+import Utilities.BasicOperation;
+import java.awt.Component;
+import java.awt.event.*;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * Class where the the panel items are defined
+ *
  * @author Shirley Pinto
  */
-public class BodyPanel extends JPanel {
+public class BodyPanel extends JPanel{
 
-    private javax.swing.JComboBox checkBoxSelectDrive;
-    private javax.swing.JTextField filePath;
-    private javax.swing.JButton jButtonGo;
-    private javax.swing.JPanel jPanelPath;
-    private javax.swing.JScrollPane jScrollPaneLeft;
-    private javax.swing.JScrollPane jScrollPaneRigth;
-    private javax.swing.JSplitPane jSplitPane;
-    private javax.swing.JTable tableLeft;
-    private javax.swing.JTable tableRigth;
-    private boolean onLeft = true;
+    private JComboBox checkBoxSelectDriveL;
+    private JTextField fieldPathL;
+    private JButton jButtonGoL;
+    
+    private JComboBox checkBoxSelectDriveR;
+    private JTextField fieldPathR;
+    private JButton jButtonGoR;
+    
+    private JPanel jPanelLeft;
+    private JPanel jPanelRight;
+    
+    private JPanel jPanelPathsBar;
+    private JScrollPane jScrollLeftPane;
+    private JScrollPane jScrollRightPane;
+    private JSplitPane jSplitPane;
+    private JTable leftTable;
+    private JTable rightTable;
+    private boolean onLeft;
+    private String selectedPath;
 
+ 
     public BodyPanel() {
+        jPanelLeft = new JPanel();
+        jPanelRight = new JPanel();
+        jPanelPathsBar = new JPanel();
         
-        jPanelPath = new javax.swing.JPanel();
-        checkBoxSelectDrive = new javax.swing.JComboBox();
-        filePath = new javax.swing.JTextField();
-        jButtonGo = new javax.swing.JButton();
-        jSplitPane = new javax.swing.JSplitPane();
-        jScrollPaneLeft = new javax.swing.JScrollPane();
-        tableLeft = new javax.swing.JTable();
-        jScrollPaneRigth = new javax.swing.JScrollPane();
-        tableRigth = new javax.swing.JTable();
-
+        checkBoxSelectDriveL = new JComboBox();
+        fieldPathL = new JTextField();
+        jButtonGoL = new JButton();
         
-        this.setLayout(new java.awt.BorderLayout());
-
-        jPanelPath.setLayout(new java.awt.BorderLayout());
-
-        checkBoxSelectDrive.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkBoxSelectDriveActionPerformed(evt);
-            }
-        });
-        jPanelPath.add(checkBoxSelectDrive, java.awt.BorderLayout.LINE_START);
-
-        filePath.setEditable(false);
+        checkBoxSelectDriveR = new JComboBox();
+        fieldPathR = new JTextField();
+        jButtonGoR = new JButton();
         
-        jPanelPath.add(filePath, java.awt.BorderLayout.CENTER);
-
-        jButtonGo.setText("Go");
-        jButtonGo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGoActionPerformed(evt);
-            }
-        });
-        jPanelPath.add(jButtonGo, java.awt.BorderLayout.LINE_END);
-
-        this.add(jPanelPath, java.awt.BorderLayout.PAGE_START);
-
-        jScrollPaneLeft.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jScrollPaneLeftMouseClicked(evt);
-            }
-        });
-
-        tableLeft.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Name", "Type", "Size", "Date"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tableLeft.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                tableLeftFocusGained(evt);
-            }
-        });
-        jScrollPaneLeft.setViewportView(tableLeft);
-
-        jSplitPane.setLeftComponent(jScrollPaneLeft);
-
-        jScrollPaneRigth.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jScrollPaneRigthMouseClicked(evt);
-            }
-        });
-
-        tableRigth.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Name", "Type", "Size", "Date"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tableRigth.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                tableRigthFocusGained(evt);
-            }
-        });
-        jScrollPaneRigth.setViewportView(tableRigth);
-
-        jSplitPane.setRightComponent(jScrollPaneRigth);
-
-        this.add(jSplitPane, java.awt.BorderLayout.CENTER);
+        jSplitPane = new JSplitPane();
+        jScrollLeftPane = new JScrollPane();
+        leftTable = new JTable();
+        jScrollRightPane = new JScrollPane();
+        rightTable = new JTable();
+        onLeft = true;
+        this.setLayout(new BorderLayout());
+        initPathsPanel();
+        this.add(jPanelPathsBar, BorderLayout.PAGE_START);
+        setModelsData();
+        this.add(jSplitPane, BorderLayout.CENTER);
     }
     
     /**
-     * Method to add the roots to panel
+     * 
      * @param evt 
      */
-    public void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
+    public void formWindowOpened(WindowEvent evt) {                                  
         File[] drives = File.listRoots();
         for (int index = 0; index < drives.length; index++) {
-            checkBoxSelectDrive.addItem(drives[index].getPath());
+            checkBoxSelectDriveL.addItem(drives[index].getPath());
+            checkBoxSelectDriveR.addItem(drives[index].getPath());
         }
     }                                 
 
     /**
-     * Method to set the file path 
+     * 
      * @param evt 
      */
-    private void checkBoxSelectDriveActionPerformed(java.awt.event.ActionEvent evt) {                                                    
-        filePath.setText(checkBoxSelectDrive.getSelectedItem().toString());
-    }                                                   
-
-    /**
-     * Method to list the file when the user selects Go button
-     * @param evt 
-     */
-    private void jButtonGoActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        listFiles(filePath.getText());
-    }    
+    private void checkBoxSelectDriveLeftActionPerformed(ActionEvent evt) {                                                    
+        fieldPathL.setText(checkBoxSelectDriveL.getSelectedItem().toString());
+    }
     
     /**
-     * Method to list all files of a given path 
-     * @param pathFile where the items will be retrieved
+     * 
+     * @param evt 
      */
-    public void listFiles(String pathFile) {
+    private void checkBoxSelectDriveRightActionPerformed(ActionEvent evt) {                                                    
+        fieldPathR.setText(checkBoxSelectDriveR.getSelectedItem().toString());
+    }
+
+    /**
+     * 
+     * @param evt 
+     */
+    private void jButtonGoLeftActionPerformed(ActionEvent evt) {                                          
+        listFiles(fieldPathL.getText(), true);
+    }
+    
+    /**
+     * 
+     * @param evt 
+     */
+    private void jButtonGoRightActionPerformed(ActionEvent evt) {                                          
+        listFiles(fieldPathR.getText(), false);
+    }
+    
+    /**
+     * 
+     * @param evt 
+     */
+    public void jButtonCopyActionPerformed(ActionEvent evt) {                                          
+        if (onLeft) {
+            BasicOperation.copyItem(new File(selectedPath), new File(rightTable.getToolTipText()));
+            listFiles(rightTable.getToolTipText(), false);
+        } else {
+            BasicOperation.copyItem(new File(selectedPath), new File(leftTable.getToolTipText()));
+            listFiles(selectedPath, true);
+        }
+    }
+    
+    /**
+     * 
+     * @param pathFile
+     * @param panel 
+     */
+    public void listFiles(String pathFile, boolean panel) {
         Path path = Paths.get(pathFile);
         File f = path.toFile();
         File[] files = f.listFiles();
-        
+       
+        this.selectedPath = pathFile;
         DefaultTableModel model = null;
-        
-        if (onLeft) {
-            model = (DefaultTableModel) tableLeft.getModel();
-        } else {
-            model = (DefaultTableModel) tableRigth.getModel();
-        }
-        
+        model = panel ? (DefaultTableModel)leftTable.getModel() : (DefaultTableModel)rightTable.getModel();
         model.getDataVector().removeAllElements();
         
         for (int index = 0; index < files.length; index++) {
-            Date d = new Date(files[index].lastModified());
-            String[] row= {files[index].getName(), files[index].isFile() ? "FILE" : "DIR", String.valueOf(files[index].length()/1024), d.toGMTString()};
-                    
+            Date date = new Date(files[index].lastModified());
+            String[] row = { files[index].getName(), files[index].isFile() ? 
+                    "FILE" : "DIR", String.valueOf(files[index].length()/1024), 
+                    date.toGMTString(), files[index].getPath() };
             model.addRow(row);            
         }        
     }
     
     /**
-     * Method to set if the right panel is selected
+     * 
      * @param evt 
      */
-    private void tableRigthFocusGained(java.awt.event.FocusEvent evt) {                                       
+    private void tableRigthFocusGained(FocusEvent evt) {                                       
         onLeft = false;
     }                                      
 
     /**
-     * Method to set if the left panel is selected
+     * 
      * @param evt 
      */
-    private void tableLeftFocusGained(java.awt.event.FocusEvent evt) {                                      
+    private void tableLeftFocusGained(FocusEvent evt) {                                      
         onLeft = true;
     }                                     
 
     /**
-     * Method to scroll the left pane
+     * 
      * @param evt 
      */
-    private void jScrollPaneLeftMouseClicked(java.awt.event.MouseEvent evt) {                                             
+    private void jScrollPaneLeftMouseClicked(MouseEvent evt) {                                             
         onLeft = true;
     }                                            
 
     /**
-     * Method to scroll the right pane 
+     * 
      * @param evt 
      */
-    private void jScrollPaneRigthMouseClicked(java.awt.event.MouseEvent evt) {                                              
+    private void jScrollPaneRigthMouseClicked(MouseEvent evt) {                                              
        onLeft = false;
     }                            
+
+    /**
+     * 
+     */
+    private void initPathsPanel() {
+        jPanelPathsBar.setLayout(new BorderLayout());
+        jPanelPathsBar.add(this.initLeftPanel(), BorderLayout.WEST);
+        jPanelPathsBar.add(this.initRightPanel(), BorderLayout.EAST);
+    }
+
+    /**
+     * 
+     */
+    private void setModelsData() {
+        jSplitPane.setLeftComponent(this.initScrollLeftPane());
+        jSplitPane.setRightComponent(this.initScrollRightPane());
+    }      
+
+    /**
+     * 
+     * @return 
+     */
+    private Component initLeftPanel() {
+        jPanelLeft.setLayout(new BorderLayout());
+
+        checkBoxSelectDriveL.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                checkBoxSelectDriveLeftActionPerformed(evt);
+            }
+        });
+        jPanelLeft.add(checkBoxSelectDriveL, BorderLayout.LINE_START);
+
+        fieldPathL.setEditable(true);
+        fieldPathL.setColumns(32);
+        
+        jPanelLeft.add(fieldPathL, BorderLayout.CENTER);
+
+        jButtonGoL.setText("Go");
+        jButtonGoL.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                jButtonGoLeftActionPerformed(evt);
+            }
+        });
+        jPanelLeft.add(jButtonGoL, BorderLayout.LINE_END);
+        
+        return jPanelLeft;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    private Component initRightPanel() {
+        jPanelRight.setLayout(new BorderLayout());
+
+        checkBoxSelectDriveR.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                checkBoxSelectDriveRightActionPerformed(evt);
+            }
+        });
+        jPanelRight.add(checkBoxSelectDriveR, BorderLayout.LINE_START);
+
+        fieldPathR.setEditable(true);
+        fieldPathR.setColumns(32);
+        
+        jPanelRight.add(fieldPathR, BorderLayout.CENTER);
+
+        jButtonGoR.setText("Go");
+        jButtonGoR.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                jButtonGoRightActionPerformed(evt);
+            }
+        });
+        jPanelRight.add(jButtonGoR, BorderLayout.LINE_END);    
+        return jPanelRight;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    private Component initLeftTable() {
+        leftTable.setModel(new DefaultTableModel(
+            new Object [][] { },
+            new String [] { "Name", "Type", "Size", "Date", "Path" }) {
+            Class[] types = new Class [] { String.class, String.class, String.class, String.class, String.class };
+            boolean[] canEdit = new boolean [] { false, false, false, false, false };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        leftTable.addFocusListener(new FocusAdapter() {
+            public void focusGained(FocusEvent evt) {
+                tableLeftFocusGained(evt);
+            }
+        });   
+        return leftTable;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    private Component initRightTable() {
+        rightTable.setModel(new DefaultTableModel(
+            new Object [][] { },
+            new String [] { "Name", "Type", "Size", "Date","Path" }) {
+            Class[] types = new Class [] { String.class, String.class, String.class, String.class, String.class };
+            boolean[] canEdit = new boolean [] { false, false, false, false, false };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        rightTable.addFocusListener(new FocusAdapter() {
+            public void focusGained(FocusEvent evt) {
+                tableRigthFocusGained(evt);
+            }
+        });
+        return rightTable;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    private Component initScrollRightPane() {
+        jScrollRightPane.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                jScrollPaneRigthMouseClicked(evt);
+            }
+        });
+
+        jScrollRightPane.setViewportView(this.initRightTable());    
+        
+        return jScrollRightPane;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    private Component initScrollLeftPane() {
+        jScrollLeftPane.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                jScrollPaneLeftMouseClicked(evt);
+            }
+        });
+
+        jScrollLeftPane.setViewportView(this.initLeftTable());
+        return jScrollLeftPane;
+    }
 }
