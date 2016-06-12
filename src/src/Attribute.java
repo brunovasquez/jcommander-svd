@@ -30,7 +30,7 @@ public class Attribute {
     }
     
     /**
-     * Method to get name  of  Attribute
+     * Method to get name  of  Atribute
      * @return an String that in this  case is the  name  of  Attribute
      */
     public String getNameAttribute()

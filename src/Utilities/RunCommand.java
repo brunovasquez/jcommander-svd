@@ -57,7 +57,7 @@ public class RunCommand {
      * @param password String for password to be used for execute the command
      * @param command String that contains the command to be executed
      * @param hostname String for the server hostname to be used to execute the command
-     * @return 
+     * @return result message from the command execution.
      */
     public static String runCommandLinux(String userName, String password, int portServer, String command, String hostname) {        
         String result = "";
