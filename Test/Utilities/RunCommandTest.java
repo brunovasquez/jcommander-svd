@@ -5,6 +5,7 @@
  */
 package Utilities;
 
+import java.io.File;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -13,11 +14,37 @@ import static org.junit.Assert.*;
  * @author vania huayta
  */
 public class RunCommandTest {
-    /*
     @Test
-    public void testRunCommandWindows() {
-        String command = "cmd /c start cmd.exe";
-                
-        assertTrue(RunCommand.run(command));
-    }*/
+    public void testRunEmptyCommandOnWindows() {
+        String command = "";
+        String result = RunCommand.runCommandWindows(command);
+        
+        assertEquals(result,"");
+    }
+    
+    @Test
+    public void testRunDirCommandOnWindows() {
+        String command = "dir";
+        String result = RunCommand.runCommandWindows(command);
+        
+        assertNotEquals(result,"");
+    }
+    
+    @Test
+    public void testRunMkdirCommandOnWindows() {
+        String command = "mkdir folderToTest";
+        RunCommand.runCommandWindows(command);
+        
+        File folderToTest = new File("folderToTest");
+        assertTrue(folderToTest.isDirectory());
+        
+        folderToTest.delete();
+    }
+    
+    @Test
+    public void testRunLsCommandLinux() {
+        String result = RunCommand.runCommandLinux("root", "bobbit", 22, "whoami", "10.230.216.33");
+        System.out.println(result);
+        assertNotEquals(result,"");
+    }
 }
