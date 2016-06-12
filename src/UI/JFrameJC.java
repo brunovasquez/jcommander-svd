@@ -6,7 +6,7 @@
 package UI;
 
 /**
- *
+ * Class where the main JFrame's components are called and defined
  * @author Shirley Pinto
  */
 public class JFrameJC extends javax.swing.JFrame {
@@ -14,7 +14,7 @@ public class JFrameJC extends javax.swing.JFrame {
     private MenuBar jMenuBar;
     private BodyPanel jPanelBody;
     private ActionButtons jPanelButtons;
-    // End of variables declaration                   
+    // End of variables declaration               
 
     /**
      * Creates new form UI
@@ -46,6 +46,4 @@ public class JFrameJC extends javax.swing.JFrame {
 
         pack();
     }
-
-    
 }

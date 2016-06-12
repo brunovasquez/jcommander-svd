@@ -12,7 +12,7 @@ import java.awt.event.*;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * Class where the the panel items are defined
  * @author Shirley Pinto
  */
 public class BodyPanel extends JPanel{
@@ -65,7 +65,7 @@ public class BodyPanel extends JPanel{
     }
     
     /**
-     * 
+     * Method to add the roots to panel
      * @param evt 
      */
     public void formWindowOpened(WindowEvent evt) {                                  
@@ -77,7 +77,7 @@ public class BodyPanel extends JPanel{
     }                                 
 
     /**
-     * 
+     * Method to set the file path for left panel
      * @param evt 
      */
     private void checkBoxSelectDriveLeftActionPerformed(ActionEvent evt) {                                                    
@@ -85,7 +85,7 @@ public class BodyPanel extends JPanel{
     }
     
     /**
-     * 
+     * Method to set the file path for right panel
      * @param evt 
      */
     private void checkBoxSelectDriveRightActionPerformed(ActionEvent evt) {                                                    
@@ -93,7 +93,7 @@ public class BodyPanel extends JPanel{
     }
 
     /**
-     * 
+     * Method to list the file when the user selects Go left button
      * @param evt 
      */
     private void jButtonGoLeftActionPerformed(ActionEvent evt) {                                          
@@ -101,7 +101,7 @@ public class BodyPanel extends JPanel{
     }
     
     /**
-     * 
+     * Method to list the file when the user selects Go left button
      * @param evt 
      */
     private void jButtonGoRightActionPerformed(ActionEvent evt) {                                          
@@ -109,7 +109,7 @@ public class BodyPanel extends JPanel{
     }
     
     /**
-     * 
+     * Method to define the Copy action
      * @param evt 
      */
     public void jButtonCopyActionPerformed(ActionEvent evt) {                                          
@@ -123,9 +123,9 @@ public class BodyPanel extends JPanel{
     }
     
     /**
-     * 
-     * @param pathFile
-     * @param panel 
+     * Method to list all files of a given path 
+     * @param pathFile where the items will be retrieved
+     * @param panel to be filled
      */
     public void listFiles(String pathFile, boolean panel) {
         Path path = Paths.get(pathFile);
@@ -147,39 +147,31 @@ public class BodyPanel extends JPanel{
     }
     
     /**
-     * 
+     * Method to set if the right panel is selected
      * @param evt 
      */
-    private void tableRigthFocusGained(FocusEvent evt) {                                       
+    private void tableRigthFocusGained(java.awt.event.FocusEvent evt) { 
         onLeft = false;
     }                                      
 
     /**
-     * 
+     * Method to set if the left panel is selected
      * @param evt 
      */
-    private void tableLeftFocusGained(FocusEvent evt) {                                      
+    private void tableLeftFocusGained(java.awt.event.FocusEvent evt) {  
         onLeft = true;
     }                                     
 
     /**
-     * 
+     * Method to scroll the left pane
      * @param evt 
      */
-    private void jScrollPaneLeftMouseClicked(MouseEvent evt) {                                             
+    private void jScrollPaneLeftMouseClicked(java.awt.event.MouseEvent evt) {                                             
         onLeft = true;
-    }                                            
+    }                                                                      
 
     /**
-     * 
-     * @param evt 
-     */
-    private void jScrollPaneRigthMouseClicked(MouseEvent evt) {                                              
-       onLeft = false;
-    }                            
-
-    /**
-     * 
+     * Method to init the paths in the bar
      */
     private void initPathsPanel() {
         jPanelPathsBar.setLayout(new BorderLayout());
@@ -188,7 +180,7 @@ public class BodyPanel extends JPanel{
     }
 
     /**
-     * 
+     * Method to set the data in both panels
      */
     private void setModelsData() {
         jSplitPane.setLeftComponent(this.initScrollLeftPane());
@@ -196,7 +188,7 @@ public class BodyPanel extends JPanel{
     }      
 
     /**
-     * 
+     * Method ti init the leftPanel components
      * @return 
      */
     private Component initLeftPanel() {
@@ -226,7 +218,7 @@ public class BodyPanel extends JPanel{
     }
 
     /**
-     * 
+     * Method to define the rightPanel components
      * @return 
      */
     private Component initRightPanel() {
@@ -255,7 +247,7 @@ public class BodyPanel extends JPanel{
     }
 
     /**
-     * 
+     * Method to init the left table
      * @return 
      */
     private Component initLeftTable() {
@@ -282,7 +274,7 @@ public class BodyPanel extends JPanel{
     }
 
     /**
-     * 
+     * Method to init the right table
      * @return 
      */
     private Component initRightTable() {
@@ -309,7 +301,7 @@ public class BodyPanel extends JPanel{
     }
 
     /**
-     * 
+     * Method to init the scroll right pane
      * @return 
      */
     private Component initScrollRightPane() {
@@ -325,7 +317,7 @@ public class BodyPanel extends JPanel{
     }
 
     /**
-     * 
+     * Method to init the scroll left pane
      * @return 
      */
     private Component initScrollLeftPane() {
@@ -338,4 +330,12 @@ public class BodyPanel extends JPanel{
         jScrollLeftPane.setViewportView(this.initLeftTable());
         return jScrollLeftPane;
     }
+
+    /**
+     * Method to scroll the right pane 
+     * @param evt 
+     */
+    private void jScrollPaneRigthMouseClicked(java.awt.event.MouseEvent evt) {                                              
+       onLeft = false;
+    }                            
 }

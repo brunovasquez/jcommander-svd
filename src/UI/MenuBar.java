@@ -8,7 +8,7 @@ package UI;
 import javax.swing.JMenuBar;
 
 /**
- *
+ * Class to define the Menu Bar's components
  * @author Shirley Pinto
  */
 class MenuBar extends JMenuBar{

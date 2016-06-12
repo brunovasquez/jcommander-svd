@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
- *
+ * Class where the action's buttons are defined
  * @author Shirley Pinto
  */
 public class ActionButtons extends JPanel{
@@ -54,4 +54,3 @@ public class ActionButtons extends JPanel{
     }
     
 }
-
