@@ -14,7 +14,7 @@ public class MainContainer {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        JFrameJC jf = new JFrameJC();
-        jf.setVisible(true);
+        JFrameJC mainFrame = new JFrameJC();
+        mainFrame.setVisible(true);
     }
 }
