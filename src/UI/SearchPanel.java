@@ -26,7 +26,9 @@ public class SearchPanel extends JFrame{
     private JList matchesList;
     private DefaultListModel listModel;
     
-    
+    /**
+     * Class constructor where all the objects are initialized.
+     */
     public SearchPanel() {
         this.setTitle("Search for files");
         this.setLayout(new BorderLayout()); 
@@ -82,9 +84,13 @@ public class SearchPanel extends JFrame{
         this.setBounds(100, 100, 500, 300);
         this.setVisible(true);
         this.show(true);
-        
     }
     
+    /**
+     * Method that response to Search button click, this is where the search method
+     * from basic operation is called.
+     * @param evt Event received from the JButton.
+     */
     private void jButtonSearchAction(java.awt.event.ActionEvent evt) {
         File path = new File(fieldPath.getText());
         listModel = new DefaultListModel();
@@ -110,6 +116,10 @@ public class SearchPanel extends JFrame{
         }
     }
     
+    /**
+     * Method to clean up all the fields and list in the Panel
+     * @param evt Event received from the JButton.
+     */
     private void jButtonCleanAction(java.awt.event.ActionEvent evt) {
         fieldName.setText("");
         fieldPath.setText("C:\\");
