@@ -1,6 +1,7 @@
 package src;
 
 import Utilities.BasicOperation;
+import Utilities.RunCommand;
 import java.io.File;
 
 /**
@@ -111,7 +112,11 @@ public class FileItem extends Item {
         return this.getSize()==file.length();
     }
     
-    /* TODO need  to  change attributes of file
+    /**
+     * Method in charge to update  attribute of  file
+     * @param attributeUpdated Atrtibute object updated
+     * @return  boolean true if  attribute  was  changed
+     */
     public boolean setFileAttribute(Attribute attributeUpdated)
     {
         boolean attributeBoolUpdated = false;
@@ -121,26 +126,27 @@ public class FileItem extends Item {
         {
             if(attributeUpdated.getValueAttribute().equals("Enabled"))
             {
-                attributeBoolUpdated = file.setReadable(true) && this.setAttributes(attributeUpdated);
+                attributeBoolUpdated = runChange(file.getAbsolutePath(), "ReadOnly", "Enabled") && this.setAttributes(attributeUpdated);
             }
             else
             {
-                attributeBoolUpdated = file.setReadable(false) && this.setAttributes(attributeUpdated);
+                attributeBoolUpdated = runChange(file.getAbsolutePath(), "ReadOnly", "Disabled") && this.setAttributes(attributeUpdated);
             } 
         }
         else
         {
             if(attributeUpdated.getValueAttribute().equals("Enabled"))
             {
-                 attributeBoolUpdated = file.setWritable(true) && this.setAttributes(attributeUpdated);
+                 attributeBoolUpdated = runChange(file.getAbsolutePath(), "Hidden", "Enabled") && this.setAttributes(attributeUpdated);
             }
             else
             {
-                attributeBoolUpdated = file.setWritable(false) && this.setAttributes(attributeUpdated);
+                attributeBoolUpdated = runChange(file.getAbsolutePath(), "Hidden", "Disabled") && this.setAttributes(attributeUpdated);
             }
         }
         return attributeBoolUpdated;
-    }*/
+    }
+    
     /**
      * Method to get the  file extension
      * @param file File - File of  filesystem 
@@ -157,4 +163,41 @@ public class FileItem extends Item {
         
         return extensionFile;
     }  
+    
+    /**
+     * Method incharge  to  run command  to  update value  for  attribute in filesystem
+     * @param fileLocation String  that cotains the absolut  path of  file
+     * @param attributeName String that contains name of  attribute
+     * @param attributeValue String  thta  contains de value  of  attribute
+     * @return boolean true if command run sucees  
+     */
+    private boolean runChange(String fileLocation, String attributeName, String attributeValue )
+    {
+        String commandRun = "";
+        
+        if(attributeName.equals("ReadOnly"))
+        {
+            if(attributeValue.equals("Enabled"))
+            {
+                commandRun = RunCommand.runCommandWindows("attrib +r "+ fileLocation );
+            }
+            else
+            {
+                commandRun = RunCommand.runCommandWindows("attrib -r "+ fileLocation);
+            }
+        }
+        else
+        {
+            if(attributeValue.equals("Enabled"))
+            {
+                commandRun = RunCommand.runCommandWindows("attrib +h "+ fileLocation );
+            }
+            else
+            {
+                commandRun = RunCommand.runCommandWindows("attrib -h "+ fileLocation);
+            }
+        }
+        
+        return commandRun.isEmpty();
+    }
 }

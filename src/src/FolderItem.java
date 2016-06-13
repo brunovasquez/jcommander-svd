@@ -1,6 +1,7 @@
 package src;
 
 import Utilities.BasicOperation;
+import Utilities.RunCommand;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -109,6 +110,78 @@ public class FolderItem extends Item {
         }
         
         return this.itemList.size() >= 0;
+    }
+    
+    /**
+     * Method in charge to update  attribute of  folder
+     * @param attributeUpdated Atrtibute object updated
+     * @return  boolean true if  attribute  was  changed
+     */
+    public boolean setFolderAttribute(Attribute attributeUpdated)
+    {
+        boolean attributeBoolUpdated = false;
+        File folder = new File(this.getLocation()+this.getName());
+        
+        if(attributeUpdated.getNameAttribute().equals("ReadOnly"))
+        {
+            if(attributeUpdated.getValueAttribute().equals("Enabled"))
+            {
+                attributeBoolUpdated = runChange(folder.getAbsolutePath(), "ReadOnly", "Enabled") && this.setAttributes(attributeUpdated);
+            }
+            else
+            {
+                attributeBoolUpdated = runChange(folder.getAbsolutePath(), "ReadOnly", "Disabled") && this.setAttributes(attributeUpdated);
+            } 
+        }
+        else
+        {
+            if(attributeUpdated.getValueAttribute().equals("Enabled"))
+            {
+                 attributeBoolUpdated = runChange(folder.getAbsolutePath(), "Hidden", "Enabled") && this.setAttributes(attributeUpdated);
+            }
+            else
+            {
+                attributeBoolUpdated = runChange(folder.getAbsolutePath(), "Hidden", "Disabled") && this.setAttributes(attributeUpdated);
+            }
+        }
+        return attributeBoolUpdated;
+    }
+    
+     /**
+     * Method incharge  to  run command  to  update value  for  attribute in filesystem
+     * @param fileLocation String  that cotains the absolut  path of  folder
+     * @param attributeName String that contains name of  attribute
+     * @param attributeValue String  thta  contains de value  of  attribute
+     * @return boolean true if command run sucees  
+     */
+    private boolean runChange(String folderLocation, String attributeName, String attributeValue )
+    {
+        String commandRun = "";
+        
+        if(attributeName.equals("ReadOnly"))
+        {
+            if(attributeValue.equals("Enabled"))
+            {
+                commandRun = RunCommand.runCommandWindows("attrib +r "+ folderLocation );
+            }
+            else
+            {
+                commandRun = RunCommand.runCommandWindows("attrib -r "+ folderLocation);
+            }
+        }
+        else
+        {
+            if(attributeValue.equals("Enabled"))
+            {
+                commandRun = RunCommand.runCommandWindows("attrib +h "+ folderLocation );
+            }
+            else
+            {
+                commandRun = RunCommand.runCommandWindows("attrib -h "+ folderLocation);
+            }
+        }
+        
+        return commandRun.isEmpty();
     }
     
     /**
