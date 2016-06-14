@@ -35,7 +35,7 @@ public class BodyPanel extends JPanel{
     private JTable leftTable;
     private JTable rightTable;
     private boolean onLeft;
-    private String selectedPath;
+    static String selectedPath;
 
  
     public BodyPanel() {
@@ -337,5 +337,5 @@ public class BodyPanel extends JPanel{
      */
     private void jScrollPaneRigthMouseClicked(MouseEvent evt) {                                              
        onLeft = false;
-    }                            
+    }
 }
