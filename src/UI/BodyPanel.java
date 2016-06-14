@@ -37,7 +37,7 @@ public class BodyPanel extends JPanel{
     private JTable leftTable;
     private JTable rightTable;
     private boolean onLeft;
-    private String selectedPath;
+    static String selectedPath;
 
  
     public BodyPanel() {
@@ -148,62 +148,12 @@ public class BodyPanel extends JPanel{
         }        
     }
     
-   public void selectRowJtable(final JTable jtableSelect)
-   {
-    jtableSelect.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-    
-    @Override
-    public void valueChanged(ListSelectionEvent event) {
-        if (jtableSelect.getSelectedRow() > -1) {
-            // print first column value from selected row
-           
-            if(jtableSelect.getValueAt(jtableSelect.getSelectedRow(), 1).equals("DIR"))
-            {    
-            JPopupMenu popupMenu = new JPopupMenu();
-            JMenuItem menuItemAdd = new JMenuItem("Create");
-            JMenuItem menuItemRemove = new JMenuItem("Edit");
-            JMenuItem menuItemRemoveAll = new JMenuItem("Delete");
-
-            popupMenu.add(menuItemAdd);
-            popupMenu.add(menuItemRemove);
-            popupMenu.add(menuItemRemoveAll);
-            jtableSelect.setComponentPopupMenu(popupMenu);
-            
-            popupMenu.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent event) {
-                JcreateFile(event);
-   
-            }
-          
-        });
-            
-            }
-            //jtableSelect.addMouseListener(new TableMouseListener(jtableSelect));
-            
-            
-            
-            System.out.println(jtableSelect.getValueAt(jtableSelect.getSelectedRow(), 4).toString());
-            //System.out.println(jtableSelect.getValueAt(jtableSelect.getSelectedRow(), 0).toString()+File.separator+"Test");
-        }
-    }
-    });
-   }
-    
-   
-   public void JcreateFile(MouseEvent event)
-   {
-       JCreatePanel createPanel = new JCreatePanel();
-   }
-   
-     
     /**
      * Method to set if the right panel is selected
      * @param evt 
      */
     private void tableRigthFocusGained(FocusEvent evt) { 
         onLeft = false;
-        selectRowJtable(rightTable);
     }                                      
 
     /**
@@ -220,8 +170,12 @@ public class BodyPanel extends JPanel{
      */
     private void jScrollPaneLeftMouseClicked(MouseEvent evt) {                                             
         onLeft = true;
-    }                                                                      
-
+    }    
+    
+    
+    public String getSelectedPath() {
+         return selectedPath;
+     }
     /**
      * Method to initialize the paths in the bar
      */
