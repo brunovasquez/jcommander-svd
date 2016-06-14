@@ -5,9 +5,11 @@
  */
 package UI;
 
+import Utilities.BasicOperation;
 import java.awt.Component;
 import java.awt.Frame;
 import java.awt.event.*;
+import java.io.File;
 import javax.swing.*;
 
 /**
@@ -18,6 +20,7 @@ public class DeleteConfirmation extends JDialog {
 
     private JButton cancelButton;
     private JLabel jLabelDeleteText;
+    private JLabel jLabelPath;
     private JButton okButton;
     private GroupLayout layout;
     private int returnStatus = RET_CANCEL;
@@ -28,9 +31,9 @@ public class DeleteConfirmation extends JDialog {
     /**
      * Creates new form DeleteConfirmation
      */
-    public DeleteConfirmation (Frame parent, boolean modal) {
+    public DeleteConfirmation (Frame parent, boolean modal, String path) {
         super(parent, modal);
-        this.initComponents();
+        this.initComponents(path);
 
         // Close the dialog when Esc is pressed
         String cancelName = "Cancel";
@@ -52,11 +55,14 @@ public class DeleteConfirmation extends JDialog {
     }
 
     @SuppressWarnings("unchecked")
-    private void initComponents() {
+    private void initComponents(String path) {
 
         okButton = new JButton();
         cancelButton = new JButton();
         jLabelDeleteText = new JLabel();
+        jLabelPath = new JLabel();
+        jLabelPath.setText(path);
+        
 
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent evt) { closeDialog(RET_CANCEL); }});
@@ -69,7 +75,7 @@ public class DeleteConfirmation extends JDialog {
         cancelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) { cancelButtonActionPerformed(evt); }});
 
-        jLabelDeleteText.setText("Do you really want to delete the selected Item?");
+        jLabelDeleteText.setText("Do you really want to delete the selected Item" + new File(path).getName() +"?");
 
         layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,6 +92,7 @@ public class DeleteConfirmation extends JDialog {
      * @param evt 
      */
     private void okButtonActionPerformed(ActionEvent evt) {
+        BasicOperation.deleteItem(new File(jLabelPath.getText()));
         closeDialog(RET_OK);
     }
 

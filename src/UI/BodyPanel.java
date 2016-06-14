@@ -5,19 +5,15 @@ import java.io.File;
 import java.nio.file.*;
 import java.util.Date;
 import javax.swing.*;
-
-import Utilities.BasicOperation;
 import java.awt.Component;
 import java.awt.event.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
  * Class where the the panel items are defined
  * @author Shirley Pinto
  */
-public class BodyPanel extends JPanel{
+public class BodyPanel extends JPanel {
 
     private JComboBox checkBoxSelectDriveL;
     private JTextField fieldPathL;
@@ -38,9 +34,11 @@ public class BodyPanel extends JPanel{
     private JTable rightTable;
     private boolean onLeft;
     static String selectedPath;
+    private JFrame parent;
 
  
-    public BodyPanel() {
+    public BodyPanel(JFrame parent) {
+        this.parent = parent;
         jPanelLeft = new JPanel();
         jPanelRight = new JPanel();
         jPanelPathsBar = new JPanel();
@@ -64,6 +62,17 @@ public class BodyPanel extends JPanel{
         this.add(jPanelPathsBar, BorderLayout.PAGE_START);
         setModelsData();
         this.add(jSplitPane, BorderLayout.CENTER);
+        
+        leftTable.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                selectedPath = (getSelectedItemPath());
+            }
+            }); 
+        rightTable.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                selectedPath = (getSelectedItemPath());
+            }
+        }); 
     }
     
     /**
@@ -116,13 +125,26 @@ public class BodyPanel extends JPanel{
      */
     public void jButtonCopyActionPerformed(ActionEvent evt) {                                          
         if (onLeft) {
-            BasicOperation.copyItem(new File(selectedPath), new File(rightTable.getToolTipText()));
-            listFiles(rightTable.getToolTipText(), false);
+            CopyDialog copyDilog = new CopyDialog(this.parent, true, 
+                    new File(this.selectedPath),
+                    new File(fieldPathR.getText()+"\\"+ new File(selectedPath).getName()));
+            copyDilog.setVisible(true);
+            listFiles(fieldPathR.getText(), false);
         } else {
-            BasicOperation.copyItem(new File(selectedPath), new File(leftTable.getToolTipText()));
-            listFiles(selectedPath, true);
+            CopyDialog copyDilog = new CopyDialog(this.parent, true, 
+                    new File(this.selectedPath), 
+                    new File(fieldPathL.getText()+"\\"+ new File(selectedPath).getName()));
+            copyDilog.setVisible(true);
+            listFiles(fieldPathL.getText(), true);
         }
     }
+    
+    public void jButtonDeleteActionPerformed(ActionEvent evt) {
+        DeleteConfirmation del = new DeleteConfirmation(parent, true, selectedPath);
+        del.setVisible(true);
+        listFiles(fieldPathR.getText(), false);
+        listFiles(fieldPathL.getText(), true);
+    } 
     
     /**
      * Method to list all files of a given path 
@@ -339,5 +361,17 @@ public class BodyPanel extends JPanel{
      */
     private void jScrollPaneRigthMouseClicked(MouseEvent evt) {                                              
        onLeft = false;
+    }
+    
+    private String getSelectedItemPath() {
+        String selected;
+        if (onLeft) {
+            int i = this.leftTable.getSelectedRow();
+            selected = (String) this.leftTable.getValueAt(i, 4);
+        } else {
+            int i = this.rightTable.getSelectedRow();
+            selected = (String) this.rightTable.getValueAt(i, 4);
+        }
+        return selected;
     }
 }

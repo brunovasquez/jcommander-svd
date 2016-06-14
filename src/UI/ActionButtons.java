@@ -7,27 +7,23 @@ package UI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.xml.bind.Marshaller.Listener;
 
 /**
  * Class where the action's buttons are defined
  * @author Shirley Pinto
  */
-public class ActionButtons extends JPanel{
+public class ActionButtons extends JPanel {
     private JButton jButtonCopy;
     private JButton jButtonDelete;
     private JButton jButtonEdit;
     private JButton jButtonMove;
     private JButton jButtonSearch;
     private JButton jButtonCreate;
-    private JFrame parent;
+    private JFrameJC parent;
     
-    public ActionButtons(final JFrame parent) {
+    public ActionButtons(JFrameJC parent) {
         this.parent = parent;  
         jButtonEdit = new JButton();
         jButtonCopy = new JButton();
@@ -76,7 +72,7 @@ public class ActionButtons extends JPanel{
     * @param evt 
     */
     private void jButtonCopyActionPerformed(ActionEvent evt) {
-         //TODO
+         parent.getjPanelBody().jButtonCopyActionPerformed(evt);
     }
     
     /**
@@ -84,8 +80,7 @@ public class ActionButtons extends JPanel{
      * @param evt 
      */
     private void jButtonDeleteActionPerformed(ActionEvent evt) {
-        DeleteConfirmation del = new DeleteConfirmation(parent, true);
-        del.setVisible(true);
+         parent.getjPanelBody().jButtonDeleteActionPerformed(evt);
     }   
     
     /**
@@ -97,7 +92,6 @@ public class ActionButtons extends JPanel{
         srch.setVisible(true);
     }
     
-
     /**
      * Method  to  activate  create  folder  action
      * @param evt 
