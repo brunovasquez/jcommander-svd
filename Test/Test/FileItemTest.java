@@ -146,7 +146,6 @@ public class FileItemTest {
        assertEquals(newDirectory.getAbsolutePath(), fileItem.getLocation());
    }
     
-    /* TODO unit test for set attribute
    @Test
    public void setAttributeOfFile()
    {
@@ -158,10 +157,10 @@ public class FileItemTest {
                 
        AttributeHandler attributeList = new AttributeHandler(listAttributes);
        
-       FileItem fileItem = new FileItem("test", "F:\\", 0, attributeList, ".txt");
+       FileItem fileItem = new FileItem("test", File.listRoots()[0].getAbsolutePath(), 0, attributeList, ".txt");
        
-       Attribute attributeReadOnlyFalse = new  Attribute("ReadOnly", "Enabled");
+       Attribute attributeReadOnlyFalse = new  Attribute("Hidden", "Enabled");
        
        assertTrue(fileItem.setFileAttribute(attributeReadOnlyFalse));
-   }*/
+   }
 }
