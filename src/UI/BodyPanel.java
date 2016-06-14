@@ -172,10 +172,6 @@ public class BodyPanel extends JPanel{
         onLeft = true;
     }    
     
-    
-    public String getSelectedPath() {
-         return selectedPath;
-     }
     /**
      * Method to initialize the paths in the bar
      */
