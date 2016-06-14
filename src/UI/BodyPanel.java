@@ -129,8 +129,8 @@ public class BodyPanel extends JPanel{
      */
     public void listFiles(String pathFile, boolean panel) {
         Path path = Paths.get(pathFile);
-        File f = path.toFile();
-        File[] files = f.listFiles();
+        File file = path.toFile();
+        File[] files = file.listFiles();
        
         this.selectedPath = pathFile;
         DefaultTableModel model = null;
