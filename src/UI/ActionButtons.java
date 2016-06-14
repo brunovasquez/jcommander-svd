@@ -21,6 +21,7 @@ public class ActionButtons extends JPanel{
     private JButton jButtonEdit;
     private JButton jButtonMove;
     private JButton jButtonSearch;
+    private JButton jButtonCreate;
     private JFrame parent;
     
     public ActionButtons(final JFrame parent) {
@@ -30,13 +31,22 @@ public class ActionButtons extends JPanel{
         jButtonMove = new JButton();
         jButtonDelete = new JButton();
         jButtonSearch = new JButton();
+        jButtonCreate = new JButton();
         jButtonEdit.setText("Edit");
         this.add(jButtonEdit);
         jButtonSearch.setText("Search");
         this.add(jButtonSearch);
+        jButtonCreate.setText("Create Folder");
+        this.add(jButtonCreate);
         
         jButtonSearch.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) { jButtonSearchActionPerformed(evt);}
+        });
+        
+        jButtonCreate.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                 jButtonCreateActionPerformed(e);
+            }
         });
         
         jButtonCopy.setText("Copy");
@@ -79,5 +89,17 @@ public class ActionButtons extends JPanel{
     private void jButtonSearchActionPerformed(ActionEvent evt) {
         SearchDialog srch = new SearchDialog(parent, true);
         srch.setVisible(true);
+    }
+    
+    /**
+     * Method  to  activate  create  folder  action
+     * @param evt 
+     */
+    private void jButtonCreateActionPerformed(ActionEvent evt) {
+    if(BodyPanel.selectedPath!=null)
+    {
+        CreateDialog createDialog = new CreateDialog(parent, true);
+        createDialog.setVisible(true);
+    }
     }
 }
