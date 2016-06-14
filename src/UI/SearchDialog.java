@@ -5,8 +5,11 @@
  */
 package UI;
 import Utilities.SearchItem;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.*;
 
 /**
@@ -55,17 +58,17 @@ public class SearchDialog extends JDialog {
         
         jLabelSearchFor.setText("Search for: ");
         jButtonStartSearch.setText("Start Search");
-        jButtonStartSearch.addActionListener(new java.awt.event.ActionListener() {
+        jButtonStartSearch.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonSearchAction(evt);
             }
         });
         
         jButtonCancel.setText("Cancel");
-        jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCancel.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonCancelAction(evt);
             }
         });
@@ -147,7 +150,7 @@ public class SearchDialog extends JDialog {
      * from basic operation is called.
      * @param evt Event received from the JButton.
      */
-    private void jButtonSearchAction(java.awt.event.ActionEvent evt) {
+    private void jButtonSearchAction(ActionEvent evt) {
         File path = new File(jTextSearchIn.getText());
         listModel = new DefaultListModel();
         if ((jTextSearchFor.getText().isEmpty()) || (jTextSearchIn.getText().isEmpty())) {
@@ -155,14 +158,15 @@ public class SearchDialog extends JDialog {
             
         } else {     
             if(path.exists()) {
-                java.util.List<String> items = new ArrayList<>();
-                java.util.List<String> coincidences = SearchItem.searchUsingWilcards(jTextSearchFor.getText(), path, items);
+                List<String> items = new ArrayList<>();
+                List<String> coincidences = SearchItem.searchUsingWilcards(jTextSearchFor.getText(), path, items);
                 if(!coincidences.isEmpty()) {
                     for (String coincidence : coincidences) {
                         listModel.addElement(coincidence);
                     }
                 }else {
                     JOptionPane.showMessageDialog(this, "There are no files with similar name.", "Warning", JOptionPane.WARNING_MESSAGE);
+                    listModel.addElement("(List of results...)");
                 }
                 resultList.setModel(listModel);
             } else {
@@ -175,12 +179,11 @@ public class SearchDialog extends JDialog {
      * Method to clean up all the fields and list in the Panel
      * @param evt Event received from the JButton.
      */
-    private void jButtonCancelAction(java.awt.event.ActionEvent evt) {
+    private void jButtonCancelAction(ActionEvent evt) {
         jTextSearchFor.setText("");
-        jTextSearchIn.setText("C:\\");
+        jTextSearchIn.setText(BodyPanel.selectedPath);
         listModel = new DefaultListModel();
         listModel.addElement("(List of results...)");       
         resultList.setModel(listModel);
-        
     }
 }

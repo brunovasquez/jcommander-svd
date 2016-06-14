@@ -338,8 +338,4 @@ public class BodyPanel extends JPanel{
     private void jScrollPaneRigthMouseClicked(MouseEvent evt) {                                              
        onLeft = false;
     }
-    
-    public String getSelectedPath() {
-        return selectedPath;
-    }
 }
