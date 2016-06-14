@@ -9,6 +9,10 @@ import javax.swing.*;
 import src.Attribute;
 import src.AttributeHandler;
 import src.FolderItem;
+<<<<<<< HEAD
+=======
+import java.awt.event.*;
+>>>>>>> master
 
 /**
  *
@@ -49,10 +53,17 @@ public class CreateDialog extends JDialog {
         
         jLabelName.setText("Name :");
         jButtonCreate.setText("Create");
+<<<<<<< HEAD
         jButtonCreate.addActionListener(new java.awt.event.ActionListener(){
         
         @Override
              public void actionPerformed(java.awt.event.ActionEvent evt) {
+=======
+        jButtonCreate.addActionListener(new ActionListener(){
+        
+        @Override
+             public void actionPerformed(ActionEvent evt) {
+>>>>>>> master
                  jButtonCreateAction(evt);
              }
         
@@ -61,7 +72,11 @@ public class CreateDialog extends JDialog {
         jButtonCancel.setText("Cancel");
         jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
              @Override
+<<<<<<< HEAD
              public void actionPerformed(java.awt.event.ActionEvent evt) {
+=======
+             public void actionPerformed(ActionEvent evt) {
+>>>>>>> master
                  jButtonCancelAction(evt);
              }
          });
@@ -139,13 +154,21 @@ public class CreateDialog extends JDialog {
         );
     }
     
+<<<<<<< HEAD
     private void jButtonCancelAction(java.awt.event.ActionEvent evt) 
+=======
+    private void jButtonCancelAction(ActionEvent evt) 
+>>>>>>> master
     {
        setModal(false);
        this.dispose();
     }
     
+<<<<<<< HEAD
     private void jButtonCreateAction(java.awt.event.ActionEvent evt)
+=======
+    private void jButtonCreateAction(ActionEvent evt)
+>>>>>>> master
     {
         Attribute attributeReadOnly = new Attribute("ReadOnly", "Disabled");
         Attribute attributeHidden = new Attribute("Hidden", "Disabled");

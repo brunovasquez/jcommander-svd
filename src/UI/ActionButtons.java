@@ -35,7 +35,10 @@ public class ActionButtons extends JPanel{
         jButtonDelete = new JButton();
         jButtonSearch = new JButton();
         jButtonCreate = new JButton();
+<<<<<<< HEAD
         
+=======
+>>>>>>> master
         jButtonEdit.setText("Edit");
         this.add(jButtonEdit);
         jButtonSearch.setText("Search");
@@ -47,16 +50,22 @@ public class ActionButtons extends JPanel{
             public void actionPerformed(ActionEvent evt) { jButtonSearchActionPerformed(evt);}
         });
         
+<<<<<<< HEAD
         
         
         
+=======
+>>>>>>> master
         jButtonCreate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                  jButtonCreateActionPerformed(e);
             }
         });
         
+<<<<<<< HEAD
         
+=======
+>>>>>>> master
         jButtonCopy.setText("Copy");
         jButtonCopy.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) { jButtonCopyActionPerformed(evt); }        
@@ -99,6 +108,13 @@ public class ActionButtons extends JPanel{
         srch.setVisible(true);
     }
     
+<<<<<<< HEAD
+=======
+    /**
+     * Method  to  activate  create  folder  action
+     * @param evt 
+     */
+>>>>>>> master
     private void jButtonCreateActionPerformed(ActionEvent evt) {
     if(BodyPanel.selectedPath!=null)
     {
