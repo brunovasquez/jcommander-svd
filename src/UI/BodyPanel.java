@@ -150,7 +150,7 @@ public class BodyPanel extends JPanel{
      * Method to set if the right panel is selected
      * @param evt 
      */
-    private void tableRigthFocusGained(java.awt.event.FocusEvent evt) { 
+    private void tableRigthFocusGained(FocusEvent evt) { 
         onLeft = false;
     }                                      
 
@@ -158,7 +158,7 @@ public class BodyPanel extends JPanel{
      * Method to set if the left panel is selected
      * @param evt 
      */
-    private void tableLeftFocusGained(java.awt.event.FocusEvent evt) {  
+    private void tableLeftFocusGained(FocusEvent evt) {  
         onLeft = true;
     }                                     
 
@@ -166,12 +166,12 @@ public class BodyPanel extends JPanel{
      * Method to scroll the left pane
      * @param evt 
      */
-    private void jScrollPaneLeftMouseClicked(java.awt.event.MouseEvent evt) {                                             
+    private void jScrollPaneLeftMouseClicked(MouseEvent evt) {                                             
         onLeft = true;
     }                                                                      
 
     /**
-     * Method to init the paths in the bar
+     * Method to initialize the paths in the bar
      */
     private void initPathsPanel() {
         jPanelPathsBar.setLayout(new BorderLayout());
@@ -188,7 +188,7 @@ public class BodyPanel extends JPanel{
     }      
 
     /**
-     * Method ti init the leftPanel components
+     * Method to initialize the leftPanel components
      * @return 
      */
     private Component initLeftPanel() {
@@ -247,7 +247,7 @@ public class BodyPanel extends JPanel{
     }
 
     /**
-     * Method to init the left table
+     * Method to initialize the left table
      * @return 
      */
     private Component initLeftTable() {
@@ -274,7 +274,7 @@ public class BodyPanel extends JPanel{
     }
 
     /**
-     * Method to init the right table
+     * Method to initialize the right table
      * @return 
      */
     private Component initRightTable() {
@@ -301,7 +301,7 @@ public class BodyPanel extends JPanel{
     }
 
     /**
-     * Method to init the scroll right pane
+     * Method to initialize the scroll right pane
      * @return 
      */
     private Component initScrollRightPane() {
@@ -317,7 +317,7 @@ public class BodyPanel extends JPanel{
     }
 
     /**
-     * Method to init the scroll left pane
+     * Method to initialize the scroll left pane
      * @return 
      */
     private Component initScrollLeftPane() {
@@ -335,7 +335,7 @@ public class BodyPanel extends JPanel{
      * Method to scroll the right pane 
      * @param evt 
      */
-    private void jScrollPaneRigthMouseClicked(java.awt.event.MouseEvent evt) {                                              
+    private void jScrollPaneRigthMouseClicked(MouseEvent evt) {                                              
        onLeft = false;
     }                            
 }

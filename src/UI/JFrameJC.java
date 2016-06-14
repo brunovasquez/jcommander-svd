@@ -5,16 +5,20 @@
  */
 package UI;
 
+import java.awt.BorderLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
+
 /**
  * Class where the main JFrame's components are called and defined
  * @author Shirley Pinto
  */
-public class JFrameJC extends javax.swing.JFrame {
-    // Variables declaration - do not modify                     
+public class JFrameJC extends JFrame {
     private MenuBar jMenuBar;
     private BodyPanel jPanelBody;
     private ActionButtons jPanelButtons;
-    // End of variables declaration               
 
     /**
      * Creates new form UI
@@ -28,20 +32,19 @@ public class JFrameJC extends javax.swing.JFrame {
      */
      private void initComponents() {
 
-        jPanelButtons = new ActionButtons();
+        jPanelButtons = new ActionButtons(this);
         jPanelBody = new BodyPanel();
         jMenuBar = new MenuBar();
         
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            public void windowOpened(WindowEvent evt) {
                 jPanelBody.formWindowOpened(evt);
             }
         });
         
-        getContentPane().add(jPanelButtons, java.awt.BorderLayout.PAGE_END);
-        getContentPane().add(jPanelBody, java.awt.BorderLayout.CENTER);
-
+        getContentPane().add(jPanelButtons, BorderLayout.PAGE_END);
+        getContentPane().add(jPanelBody, BorderLayout.CENTER);
         setJMenuBar(jMenuBar);
 
         pack();

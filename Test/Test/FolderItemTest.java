@@ -12,6 +12,7 @@ import src.FileItem;
 import src.FolderItem;
 import Utilities.BasicOperation;
 
+
 /**
  * Unit test for  FolderItem Object
  * @author Daniel Gumucio
@@ -115,5 +116,23 @@ public class FolderItemTest {
                break;
            } 
        }
+   }
+   
+  @Test
+   public void setAttributeOfFolder()
+   {
+       Attribute attributeReadOnly = new  Attribute("ReadOnly", "Disabled");
+       Attribute attributeHidden = new Attribute("Hidden", "Disabled");
+       ArrayList<Attribute> listAttributes = new ArrayList<>() ;
+       listAttributes.add(attributeReadOnly);
+       listAttributes.add(attributeHidden);
+                
+       AttributeHandler attributeList = new AttributeHandler(listAttributes);
+       
+       FolderItem folderItem = new FolderItem("test", File.listRoots()[0].getAbsolutePath(), 0, attributeList);
+       
+       Attribute attributeReadOnlyFalse = new  Attribute("Hidden", "Enabled");
+       
+       assertTrue(folderItem.setFolderAttribute(attributeReadOnlyFalse));
    }
 }
