@@ -9,6 +9,8 @@ import javax.swing.*;
 import Utilities.BasicOperation;
 import java.awt.Component;
 import java.awt.event.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -168,8 +170,8 @@ public class BodyPanel extends JPanel{
      */
     private void jScrollPaneLeftMouseClicked(MouseEvent evt) {                                             
         onLeft = true;
-    }                                                                      
-
+    }    
+    
     /**
      * Method to initialize the paths in the bar
      */
