@@ -70,7 +70,7 @@ public class RunCommand {
                 config.put("StrictHostKeyChecking", "no");
                 session.setConfig(config);
                 session.connect();
-                Channel objChannel = session.openChannel("exec");
+                Channel objChannel = (Channel)session.openChannel("exec");
                 ChannelExec objChanelExec = (ChannelExec) objChannel;
                 objChanelExec.setCommand(command);
                 objChanelExec.setErrStream(System.err);
