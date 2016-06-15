@@ -168,7 +168,6 @@ public class BodyPanel extends JPanel {
     
     public void jButtonBackActionPerformed(ActionEvent evt) {
         nextPath =  currentPath;
-        currentPath = selectedPath;
         selectedPath = backPath;
         if (onLeft) {
             fieldPathL.setText(selectedPath);
@@ -181,7 +180,6 @@ public class BodyPanel extends JPanel {
     
     public void jButtonForwardActionPerformed(ActionEvent evt) {
         backPath = currentPath;
-        currentPath = selectedPath;
         selectedPath = nextPath;
         if (onLeft) {
             fieldPathL.setText(selectedPath);
