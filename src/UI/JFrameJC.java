@@ -17,6 +17,7 @@ import javax.swing.WindowConstants;
  */
 public class JFrameJC extends JFrame {
     private MenuBar jMenuBar;
+    private OperationButtons jOperationButtons;
     public static BodyPanel jPanelBody;
     private ActionButtons jPanelButtons;
 
@@ -33,6 +34,7 @@ public class JFrameJC extends JFrame {
      private void initComponents() {
 
         jPanelButtons = new ActionButtons(this);
+        jOperationButtons = new OperationButtons(this);
         jPanelBody = new BodyPanel(this);
         jMenuBar = new MenuBar();
         
@@ -42,7 +44,7 @@ public class JFrameJC extends JFrame {
                 getjPanelBody().formWindowOpened(evt);
             }
         });
-        
+        getContentPane().add(getjOperationButtons(), BorderLayout.PAGE_START);
         getContentPane().add(getjPanelButtons(), BorderLayout.PAGE_END);
         getContentPane().add(getjPanelBody(), BorderLayout.CENTER);
         setJMenuBar(getjMenuBar());
@@ -50,6 +52,9 @@ public class JFrameJC extends JFrame {
         pack();
     }
 
+    public OperationButtons getjOperationButtons() {
+        return jOperationButtons;
+    }
     /**
      * @return the jMenuBar
      */

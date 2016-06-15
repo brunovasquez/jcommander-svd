@@ -34,6 +34,8 @@ public class BodyPanel extends JPanel {
     private JTable rightTable;
     private boolean onLeft;
     static String selectedPath;
+    private String backPath;
+    private String nextPath;
     private JFrame parent;
 
  
@@ -144,7 +146,19 @@ public class BodyPanel extends JPanel {
         del.setVisible(true);
         listFiles(fieldPathR.getText(), false);
         listFiles(fieldPathL.getText(), true);
-    } 
+    }
+    
+    public void jButtonBackActionPerformed(ActionEvent evt) {
+        //back actions 
+    }
+    
+    public void jButtonForwardActionPerformed(ActionEvent evt) {
+        //forward actions
+    }
+    
+    public void jButtonSelectionActionPerformed(ActionEvent evt) {
+        //select/unselect actions
+    }
     
     /**
      * Method to list all files of a given path 
