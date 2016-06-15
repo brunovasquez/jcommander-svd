@@ -187,7 +187,7 @@ public class SearchDialog extends JDialog {
     }
 
     /**
-     * Method to initialize cancel button's events
+     * Method to initialize cancel button's  events
      */
     private void initCancelButton() {
         jButtonCancel.setText("Cancel");
