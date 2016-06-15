@@ -131,7 +131,6 @@ public class CreateDialog extends JDialog {
                 .addGap(6,6,6)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
                         .addComponent(jButtonCreate))
                         .addGap(3, 3, 3)
                         .addComponent(jButtonCancel)
