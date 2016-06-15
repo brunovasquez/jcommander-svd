@@ -7,7 +7,8 @@ package UI;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-
+import javax.swing.JMenuItem ;
+import java.awt.event.*;
 /**
  * Class to define the Menu Bar's components
  * @author Shirley Pinto
@@ -15,17 +16,36 @@ import javax.swing.JMenuBar;
 class MenuBar extends JMenuBar {
     private JMenu jMenuEdit;
     private JMenu jMenuFile;
-
+    private JMenuItem jMenuCreateFile; 
+            
     public MenuBar() {
-        
+       
         jMenuFile = new JMenu();
         jMenuEdit = new JMenu();
-        
+        jMenuCreateFile = new JMenuItem("Create File");
+                
         jMenuFile.setText("File");
+        jMenuFile.add(jMenuCreateFile);
         this.add(jMenuFile);
 
+        jMenuCreateFile.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                jMenuCreateFileActionPerformed(evt);
+            }
+        });
+
+        
         jMenuEdit.setText("Edit");
         this.add(jMenuEdit);
-
+    }
+        private void jMenuCreateFileActionPerformed(ActionEvent event)
+        {
+            if(BodyPanel.selectedPath != null)
+            {
+                CreateFile createFile = new CreateFile();
+                createFile.setVisible(true);
+            }
+        }
     }  
-}
+
