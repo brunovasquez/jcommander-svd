@@ -79,23 +79,9 @@ public class MoveDialog extends JDialog {
         });
         getContentPane().setLayout(new AbsoluteLayout());
 
-        okButton.setText("OK");
-        okButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                okButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(okButton, new AbsoluteConstraints(101, 79, 85, -1));
-        getRootPane().setDefaultButton(okButton);
-
-        cancelButton.setText("Cancel");
-        cancelButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(cancelButton, new AbsoluteConstraints(215, 79, 85, -1));
-
+        this.initOkButton();
+        this.initCancelButton();
+        
         labelMoveFrom.setText("Move:");
         getContentPane().add(labelMoveFrom, new AbsoluteConstraints(10, 14, -1, -1));
         getContentPane().add(fieldMoveFrom, new AbsoluteConstraints(49, 11, 341, -1));
@@ -106,11 +92,19 @@ public class MoveDialog extends JDialog {
         pack();
     }
 
+    /**
+     * Method to move the item after clicking ok button
+     * @param evt 
+     */
     private void okButtonActionPerformed(ActionEvent evt) {  
         BasicOperation.moveItem(new File(this.fieldMoveFrom.getText()), new File(fieldMoveTo.getText()));
         doClose(RET_OK);
     }
 
+    /**
+     * Method to close the dialog after clicking cancel button
+     * @param evt 
+     */
     private void cancelButtonActionPerformed(ActionEvent evt) {
         doClose(RET_CANCEL);
     }
@@ -122,9 +116,40 @@ public class MoveDialog extends JDialog {
         doClose(RET_CANCEL);
     }
     
+    /**
+     * Method to close the dialog
+     * @param retStatus 
+     */
     public void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
         dispose();
+    }
+
+    /**
+     * Method to initialize ok button's events
+     */
+    private void initOkButton() {
+        okButton.setText("OK");
+        okButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                okButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(okButton, new AbsoluteConstraints(101, 79, 85, -1));
+        getRootPane().setDefaultButton(okButton);
+    }
+
+    /**
+     * Method to initialize cancel button's events
+     */
+    private void initCancelButton() {
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cancelButton, new AbsoluteConstraints(215, 79, 85, -1));
     }
 }

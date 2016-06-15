@@ -39,13 +39,16 @@ class MenuBar extends JMenuBar {
         jMenuEdit.setText("Edit");
         this.add(jMenuEdit);
     }
-        private void jMenuCreateFileActionPerformed(ActionEvent event)
-        {
-            if(BodyPanel.selectedPath != null)
-            {
-                CreateFile createFile = new CreateFile();
-                createFile.setVisible(true);
-            }
+    
+    /**
+     * Method to create file after selecting the menu
+     * @param event 
+     */
+    private void jMenuCreateFileActionPerformed(ActionEvent event) {
+        if(BodyPanel.selectedPath != null) {
+            CreateFile createFile = new CreateFile();
+            createFile.setVisible(true);
         }
-    }  
+    }
+}  
 

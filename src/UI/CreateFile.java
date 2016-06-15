@@ -29,7 +29,6 @@ public class CreateFile extends JDialog {
     private GroupLayout layout;
     private JScrollPane jScrollPane;
     
-    
     /**
      * Creates new form Create
      * @param parent
@@ -51,8 +50,7 @@ public class CreateFile extends JDialog {
         
         String[] extensions = { "", "txt" };
         jComboBoxExtension = new JComboBox(extensions);
-        
-        
+
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         
         jLabelName.setText("Name :");
@@ -62,8 +60,7 @@ public class CreateFile extends JDialog {
         @Override
              public void actionPerformed(ActionEvent evt) {
                  jButtonCreateAction(evt);
-             }
-        
+             }   
         });
         
         jButtonCancel.setText("Cancel");
@@ -159,15 +156,20 @@ public class CreateFile extends JDialog {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
     }
-    
-    private void jButtonCancelAction(ActionEvent evt) 
-    {
+     /**
+     * Method to close window after pressing Cancel button
+     * @param evt 
+     */
+    private void jButtonCancelAction(ActionEvent evt) {
        setModal(false);
        this.dispose();
     }
     
-    private void jButtonCreateAction(ActionEvent evt)
-    {
+     /**
+     * Method to create the new folder
+     * @param evt 
+     */
+    private void jButtonCreateAction(ActionEvent evt) {
         Attribute attributeReadOnly = new Attribute("ReadOnly", "Disabled");
         Attribute attributeHidden = new Attribute("Hidden", "Disabled");
         ArrayList<Attribute> attributeList = new ArrayList<>();
@@ -176,8 +178,7 @@ public class CreateFile extends JDialog {
         AttributeHandler attributeHandler = new AttributeHandler(attributeList);
         
         String extensionFile = "";
-        if(jComboBoxExtension.getSelectedIndex() > 0)
-        {
+        if(jComboBoxExtension.getSelectedIndex() > 0) {
             extensionFile = "."+ jComboBoxExtension.getItemAt(jComboBoxExtension.getSelectedIndex()).toString();
         }
                 
@@ -185,6 +186,5 @@ public class CreateFile extends JDialog {
         JOptionPane.showMessageDialog(this, "File was  created sucessfully", "Information", JOptionPane.INFORMATION_MESSAGE);
         setModal(false);
         this.dispose();
-    }
-            
+    }           
 }

@@ -43,7 +43,6 @@ public class CopyDialog extends JDialog {
         this.fieldCopyFrom.setText(from.getPath());
         this.fieldCopyTo.setText(to.getPath());
                 
-        // Close the dialog when Esc is pressed
         String cancelName = "cancel";
         InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), cancelName);
@@ -64,7 +63,6 @@ public class CopyDialog extends JDialog {
 
     @SuppressWarnings("unchecked")
     private void initComponents() {
-
         okButton = new JButton();
         cancelButton = new JButton();
         labelCopy = new JLabel();
@@ -79,22 +77,8 @@ public class CopyDialog extends JDialog {
         });
         getContentPane().setLayout(new AbsoluteLayout());
 
-        okButton.setText("OK");
-        okButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                okButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(okButton, new AbsoluteConstraints(101, 79, 85, -1));
-        getRootPane().setDefaultButton(okButton);
-
-        cancelButton.setText("Cancel");
-        cancelButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(cancelButton, new AbsoluteConstraints(215, 79, 85, -1));
+        this.initOkButton();
+        this.initCancelButton();        
 
         labelCopy.setText("Copy:");
         getContentPane().add(labelCopy, new AbsoluteConstraints(10, 14, -1, -1));
@@ -107,11 +91,19 @@ public class CopyDialog extends JDialog {
         pack();
     }
 
+    /**
+     * Method to activate the copy action after clicking ok button
+     * @param evt 
+     */
     private void okButtonActionPerformed(ActionEvent evt) {
         BasicOperation.copyItem(new File(this.fieldCopyFrom.getText()), new File(fieldCopyTo.getText()));
         doClose(RET_OK);
     }
 
+    /**
+     * Method to activate close window method after pressing cancel button
+     * @param evt 
+     */
     private void cancelButtonActionPerformed(ActionEvent evt) {
         doClose(RET_CANCEL);
     }
@@ -123,9 +115,40 @@ public class CopyDialog extends JDialog {
         doClose(RET_CANCEL);
     }
     
+    /**
+     * Method to close the window
+     * @param retStatus 
+     */
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
         dispose();
+    }
+
+    /**
+     * Method to add ok button to content pane
+     */
+    private void initOkButton() {
+        okButton.setText("OK");
+        okButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                okButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(okButton, new AbsoluteConstraints(101, 79, 85, -1));
+        getRootPane().setDefaultButton(okButton);
+    }
+
+    /**
+     * Method to add Cancel button to content pane
+     */
+    private void initCancelButton() {
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cancelButton, new AbsoluteConstraints(215, 79, 85, -1));
     }
 }

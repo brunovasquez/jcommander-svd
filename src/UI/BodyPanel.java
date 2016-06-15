@@ -164,6 +164,10 @@ public class BodyPanel extends JPanel {
         movedialog.doClose(RET_CANCEL);
     }
     
+    /**
+     * Method to define the delete action
+     * @param evt 
+     */
     public void jButtonDeleteActionPerformed(ActionEvent evt) {
         DeleteConfirmation del = new DeleteConfirmation(parent, true, selectedPath);
         del.setVisible(true);
@@ -171,6 +175,10 @@ public class BodyPanel extends JPanel {
         listFiles(fieldPathL.getText(), true);
     } 
     
+    /**
+     * Method to define edit action
+     * @param evt 
+     */
     public void jButtonEditActionPerformed(ActionEvent evt) {
           EditDialog editDialog;
         if (onLeft) {
@@ -376,9 +384,7 @@ public class BodyPanel extends JPanel {
                 jScrollPaneRigthMouseClicked(evt);
             }
         });
-
         jScrollRightPane.setViewportView(this.initRightTable());    
-        
         return jScrollRightPane;
     }
 
@@ -405,6 +411,10 @@ public class BodyPanel extends JPanel {
        onLeft = false;
     }
     
+    /**
+     * Method to get selected Item path
+     * @return 
+     */
     private String getSelectedItemPath() {
         String selected;
         if (onLeft) {
