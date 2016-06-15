@@ -17,7 +17,7 @@ import javax.swing.WindowConstants;
  */
 public class JFrameJC extends JFrame {
     private MenuBar jMenuBar;
-    private BodyPanel jPanelBody;
+    public static BodyPanel jPanelBody;
     private ActionButtons jPanelButtons;
 
     /**
@@ -33,20 +33,41 @@ public class JFrameJC extends JFrame {
      private void initComponents() {
 
         jPanelButtons = new ActionButtons(this);
-        jPanelBody = new BodyPanel();
+        jPanelBody = new BodyPanel(this);
         jMenuBar = new MenuBar();
         
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             public void windowOpened(WindowEvent evt) {
-                jPanelBody.formWindowOpened(evt);
+                getjPanelBody().formWindowOpened(evt);
             }
         });
         
-        getContentPane().add(jPanelButtons, BorderLayout.PAGE_END);
-        getContentPane().add(jPanelBody, BorderLayout.CENTER);
-        setJMenuBar(jMenuBar);
+        getContentPane().add(getjPanelButtons(), BorderLayout.PAGE_END);
+        getContentPane().add(getjPanelBody(), BorderLayout.CENTER);
+        setJMenuBar(getjMenuBar());
 
         pack();
+    }
+
+    /**
+     * @return the jMenuBar
+     */
+    public MenuBar getjMenuBar() {
+        return jMenuBar;
+    }
+
+    /**
+     * @return the jPanelBody
+     */
+    public BodyPanel getjPanelBody() {
+        return jPanelBody;
+    }
+
+    /**
+     * @return the jPanelButtons
+     */
+    public ActionButtons getjPanelButtons() {
+        return jPanelButtons;
     }
 }
