@@ -88,22 +88,8 @@ public class EditDialog extends JDialog {
         });
         getContentPane().setLayout(new AbsoluteLayout());
 
-        okButton.setText("Edit");
-        okButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                okButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(okButton, new AbsoluteConstraints(250, 66, 67, -1));
-        getRootPane().setDefaultButton(okButton);
-
-        cancelButton.setText("Cancel");
-        cancelButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(cancelButton, new AbsoluteConstraints(323, 66, 67, -1));
+        this.initOkButton();
+        this.initCancelButton();
 
         labelEditing.setText("Editing file:");
         getContentPane().add(labelEditing, new AbsoluteConstraints(10, 11, -1, -1));
@@ -119,6 +105,10 @@ public class EditDialog extends JDialog {
         pack();
     }
 
+    /**
+     * Method to rename the item after pressing ok button
+     * @param evt 
+     */
     private void okButtonActionPerformed(ActionEvent evt) {
         String path = actualFile.getParent();
         BasicOperation.renameItem(actualFile, new File(path+fieldNewName.getText()));
@@ -126,6 +116,10 @@ public class EditDialog extends JDialog {
         doClose(RET_OK);
     }
 
+    /**
+     * Method to close the dialog after pressing Cancel button
+     * @param evt 
+     */
     private void cancelButtonActionPerformed(ActionEvent evt) {
         doClose(RET_CANCEL);
     }
@@ -137,9 +131,40 @@ public class EditDialog extends JDialog {
         doClose(RET_CANCEL);
     }
     
+    /**
+     * Method to close the dialog
+     * @param retStatus 
+     */
     public void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
         dispose();
+    }
+
+    /**
+     * Method to initialize ok button's events
+     */
+    private void initOkButton() {
+        okButton.setText("Edit");
+        okButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                okButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(okButton, new AbsoluteConstraints(250, 66, 67, -1));
+        getRootPane().setDefaultButton(okButton);
+    }
+    
+    /**
+     * Method to initialize Cancel button's events
+     */
+    private void initCancelButton() {
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cancelButton, new AbsoluteConstraints(323, 66, 67, -1));
     }
 }

@@ -53,25 +53,11 @@ public class SearchDialog extends JDialog {
         jScrollPane = new JScrollPane();
         resultList = new JList();
         
-
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         
         jLabelSearchFor.setText("Search for: ");
-        jButtonStartSearch.setText("Start Search");
-        jButtonStartSearch.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                jButtonSearchAction(evt);
-            }
-        });
-        
-        jButtonCancel.setText("Cancel");
-        jButtonCancel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                jButtonCancelAction(evt);
-            }
-        });
+        this.initStarSearchButton();
+        this.initCancelButton();
         
         jLabelSearchIn.setText("Search in:");
         jLabelResults.setText("Results:");
@@ -185,5 +171,31 @@ public class SearchDialog extends JDialog {
         listModel = new DefaultListModel();
         listModel.addElement("(List of results...)");       
         resultList.setModel(listModel);
+    }
+
+    /**
+     * Method to initialize start search button's events
+     */
+    private void initStarSearchButton() {
+        jButtonStartSearch.setText("Start Search");
+        jButtonStartSearch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                jButtonSearchAction(evt);
+            }
+        });
+    }
+
+    /**
+     * Method to initialize cancel button's events
+     */
+    private void initCancelButton() {
+        jButtonCancel.setText("Cancel");
+        jButtonCancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                jButtonCancelAction(evt);
+            }
+        });
     }
 }

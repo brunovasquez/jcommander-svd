@@ -42,35 +42,11 @@ public class ActionButtons extends JPanel {
         jButtonCreate.setText("Create Folder");
         this.add(jButtonCreate);
         
-        jButtonSearch.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) { jButtonSearchActionPerformed(evt);}
-        });
-        
-
-        jButtonCreate.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                 jButtonCreateActionPerformed(e);
-            }
-        });
-
-        jButtonCopy.setText("Copy");
-        jButtonCopy.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) { jButtonCopyActionPerformed(evt); }        
-        });
-        this.add(jButtonCopy);
-        
-        jButtonMove.setText("Move");
-        jButtonMove.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) { jButtonMoveActionPerformed(evt); }        
-        });
-        this.add(jButtonMove);
-        
-        jButtonDelete.setText("Delete");
-        this.add(jButtonDelete);
-        
-        jButtonDelete.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) { jButtonDeleteActionPerformed(evt); }
-        });
+        this.initSearchButton();
+        this.initCreateButton();
+        this.initCopyButton();
+        this.initMoveButton();
+        this.initDeleteButton();     
     }
     
     /**
@@ -118,12 +94,63 @@ public class ActionButtons extends JPanel {
      * Method  to  activate  create  folder  action
      * @param evt 
      */
-
     private void jButtonCreateActionPerformed(ActionEvent evt) {
-    if(BodyPanel.selectedPath!=null)
-    {
-        CreateDialog createDialog = new CreateDialog(parent, true);
-        createDialog.setVisible(true);
+        if(BodyPanel.selectedPath!=null) {
+            CreateDialog createDialog = new CreateDialog(parent, true);
+            createDialog.setVisible(true);
+        }
     }
+
+    /**
+     * Method to initialize Search action button
+     */
+    private void initSearchButton() {
+         jButtonSearch.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) { jButtonSearchActionPerformed(evt);}
+        });
+    }
+
+    /**
+     * Method to initialize Create action button
+     */
+    private void initCreateButton() {
+        jButtonCreate.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                 jButtonCreateActionPerformed(e);
+            }
+        });
+    }
+
+    /**
+     * Method to initialize Copy action button
+     */
+    private void initCopyButton() {
+        jButtonCopy.setText("Copy");
+        jButtonCopy.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) { jButtonCopyActionPerformed(evt); }        
+        });
+        this.add(jButtonCopy);
+    }
+
+    /**
+     * Method to initialize Delete action button
+     */
+    private void initDeleteButton() {
+        jButtonDelete.setText("Delete");
+        jButtonDelete.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) { jButtonDeleteActionPerformed(evt); }
+        });
+        this.add(jButtonDelete);        
+    }
+
+    /**
+     * Method to initialize Move action button
+     */
+    private void initMoveButton() {
+        jButtonMove.setText("Move");
+        jButtonMove.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) { jButtonMoveActionPerformed(evt); }        
+        });
+        this.add(jButtonMove);
     }
 }

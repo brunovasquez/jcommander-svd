@@ -26,7 +26,6 @@ public class CreateDialog extends JDialog {
     private GroupLayout layout;
     private JScrollPane jScrollPane;
     
-    
     /**
      * Creates new form Create
      * @param parent
@@ -56,7 +55,6 @@ public class CreateDialog extends JDialog {
              public void actionPerformed(ActionEvent evt) {
                  jButtonCreateAction(evt);
              }
-        
         });
         
         jButtonCancel.setText("Cancel");
@@ -140,14 +138,20 @@ public class CreateDialog extends JDialog {
         );
     }
     
-    private void jButtonCancelAction(ActionEvent evt) 
-    {
+    /**
+     * Method to close window after pressing Cancel button
+     * @param evt 
+     */
+    private void jButtonCancelAction(ActionEvent evt) {
        setModal(false);
        this.dispose();
     }
     
-    private void jButtonCreateAction(ActionEvent evt)
-    {
+    /**
+     * Method to create the new folder
+     * @param evt 
+     */
+    private void jButtonCreateAction(ActionEvent evt){
         Attribute attributeReadOnly = new Attribute("ReadOnly", "Disabled");
         Attribute attributeHidden = new Attribute("Hidden", "Disabled");
         ArrayList<Attribute> attributeList = new ArrayList<>();
@@ -158,7 +162,6 @@ public class CreateDialog extends JDialog {
         FolderItem folderItem = new FolderItem(jTextName.getText(),jTextLocation.getText(),0,attributeHandler);
         JOptionPane.showMessageDialog(this, "Folder was  created sucessfully", "Information", JOptionPane.INFORMATION_MESSAGE);
         setModal(false);
-       this.dispose();
-    }
-            
+        this.dispose();
+    }     
 }
