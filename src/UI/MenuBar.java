@@ -38,8 +38,6 @@ class MenuBar extends JMenuBar {
         
         jMenuEdit.setText("Edit");
         this.add(jMenuEdit);
-<<<<<<< HEAD
-=======
     }
         private void jMenuCreateFileActionPerformed(ActionEvent event)
         {
@@ -49,6 +47,5 @@ class MenuBar extends JMenuBar {
                 createFile.setVisible(true);
             }
         }
->>>>>>> e52213d8fcdcbaf9d85a489311adcfc27b331743
     }  
 
