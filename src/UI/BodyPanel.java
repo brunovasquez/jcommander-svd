@@ -36,6 +36,7 @@ public class BodyPanel extends JPanel {
     static String selectedPath;
     private String backPath;
     private String nextPath;
+    private String currentPath;
     private JFrame parent;
 
  
@@ -110,15 +111,32 @@ public class BodyPanel extends JPanel {
      * @param evt 
      */
     private void jButtonGoLeftActionPerformed(ActionEvent evt) {                                          
-        listFiles(fieldPathL.getText(), true);
+        System.out.println("back path: " + backPath);
+        System.out.println("Next path: " + nextPath);
+        System.out.println("selected path: " + selectedPath);
+        currentPath=selectedPath;
+        File path = new File(fieldPathL.getText());
+        if (path.exists()){
+            backPath = currentPath;
+            listFiles(fieldPathL.getText(), true);
+        } else {
+            JOptionPane.showMessageDialog(this, "The selected path doesn't exist, please verify the path", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     /**
      * Method to list the file when the user selects Go left button
      * @param evt 
      */
-    private void jButtonGoRightActionPerformed(ActionEvent evt) {                                          
-        listFiles(fieldPathR.getText(), false);
+    private void jButtonGoRightActionPerformed(ActionEvent evt) {  
+        currentPath=selectedPath;
+        File path = new File(fieldPathR.getText());
+        if (path.exists()) {
+            backPath = currentPath;
+            listFiles(fieldPathR.getText(), false);
+        }else {
+            JOptionPane.showMessageDialog(this, "The selected path doesn't exist, please verify the path", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     /**
@@ -149,15 +167,33 @@ public class BodyPanel extends JPanel {
     }
     
     public void jButtonBackActionPerformed(ActionEvent evt) {
-        //back actions 
+        nextPath =  currentPath;
+        currentPath = selectedPath;
+        selectedPath = backPath;
+        if (onLeft) {
+            fieldPathL.setText(selectedPath);
+            jButtonGoLeftActionPerformed(evt);
+        } else {
+            fieldPathR.setText(selectedPath);
+            jButtonGoRightActionPerformed(evt);
+        }
     }
     
     public void jButtonForwardActionPerformed(ActionEvent evt) {
-        //forward actions
+        backPath = currentPath;
+        currentPath = selectedPath;
+        selectedPath = nextPath;
+        if (onLeft) {
+            fieldPathL.setText(selectedPath);
+            jButtonGoLeftActionPerformed(evt);
+        } else {
+            fieldPathR.setText(selectedPath);
+            jButtonGoRightActionPerformed(evt);
+        }
     }
     
     public void jButtonSelectionActionPerformed(ActionEvent evt) {
-        //select/unselect actions
+        //TODO select/unselect actions
     }
     
     /**
@@ -169,7 +205,7 @@ public class BodyPanel extends JPanel {
         Path path = Paths.get(pathFile);
         File file = path.toFile();
         File[] files = file.listFiles();
-       
+        backPath = currentPath;
         this.selectedPath = pathFile;
         DefaultTableModel model = null;
         model = panel ? (DefaultTableModel)leftTable.getModel() : (DefaultTableModel)rightTable.getModel();
@@ -212,6 +248,9 @@ public class BodyPanel extends JPanel {
      * Method to initialize the paths in the bar
      */
     private void initPathsPanel() {
+        backPath = "";
+        nextPath = "";
+        currentPath="";
         jPanelPathsBar.setLayout(new BorderLayout());
         jPanelPathsBar.add(this.initLeftPanel(), BorderLayout.WEST);
         jPanelPathsBar.add(this.initRightPanel(), BorderLayout.EAST);

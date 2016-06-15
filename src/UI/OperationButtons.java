@@ -5,11 +5,8 @@
  */
 package UI;
 
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -26,9 +23,9 @@ public class OperationButtons extends JPanel {
     
     public OperationButtons(JFrameJC parent) {
         this.parent = parent;  
-        ImageIcon back = new ImageIcon("C:\\repository JC_svd\\jcommander-svd\\resources\\icons\\back.png");
-        ImageIcon forward = new ImageIcon("C:\\repository JC_svd\\jcommander-svd\\resources\\icons\\forward.png");
-        ImageIcon select = new ImageIcon("C:\\repository JC_svd\\jcommander-svd\\resources\\icons\\select.png");
+        ImageIcon back = new ImageIcon("resources\\icons\\back.png");
+        ImageIcon forward = new ImageIcon("resources\\icons\\forward.png");
+        ImageIcon select = new ImageIcon("resources\\icons\\select.png");
         
         jButtonBack = new JButton();
         jButtonBack.setIcon(back);
