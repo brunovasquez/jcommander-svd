@@ -6,14 +6,22 @@
 package UI;
 
 import Utilities.BasicOperation;
-import java.awt.Frame;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
-import javax.swing.*;
+import javax.swing.AbstractAction;
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import org.netbeans.lib.awtextra.AbsoluteConstraints;
 import org.netbeans.lib.awtextra.AbsoluteLayout;
 
@@ -21,28 +29,28 @@ import org.netbeans.lib.awtextra.AbsoluteLayout;
  *
  * @author Shirley Pinto
  */
-public class CopyDialog extends JDialog {
-    
+public class EditDialog extends JDialog {
+
     public static final int RET_CANCEL = 0;
     public static final int RET_OK = 1;
+    public JFrameJC parent;
+    private File actualFile;
     private JButton cancelButton;
-    private JTextField fieldCopyFrom;
-    private JTextField fieldCopyTo;
-    private JLabel labelCopy;
-    private JLabel labelTo;
+    private JTextField fieldNewName;
+    private JLabel labelEditing;
+    private JLabel labelFileToEdit;
+    private JLabel labelNewName;
     private JButton okButton;
     private int returnStatus = RET_CANCEL;
     
     /**
-     * Creates new form CopyDialog
+     * Creates new form EditDialog
      */
-    public CopyDialog(Frame parent, boolean modal, File from, File to) {
+    public EditDialog(JFrameJC parent, boolean modal, String actName ) {
         super(parent, modal);
-        initComponents();
-        
-        this.fieldCopyFrom.setText(from.getPath());
-        this.fieldCopyTo.setText(to.getPath());
-                
+        this.parent = parent;
+        initComponents(actName);
+
         // Close the dialog when Esc is pressed
         String cancelName = "cancel";
         InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
@@ -63,15 +71,16 @@ public class CopyDialog extends JDialog {
     }
 
     @SuppressWarnings("unchecked")
-    private void initComponents() {
+    private void initComponents(String actName) {
 
         okButton = new JButton();
         cancelButton = new JButton();
-        labelCopy = new JLabel();
-        fieldCopyFrom = new JTextField();
-        fieldCopyTo = new JTextField();
-        labelTo = new JLabel();
+        labelEditing = new JLabel();
+        labelFileToEdit = new JLabel();
+        fieldNewName = new JTextField();
+        labelNewName = new JLabel();
 
+        setSize(new Dimension(400, 100));
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent evt) {
                 closeDialog(evt);
@@ -79,13 +88,13 @@ public class CopyDialog extends JDialog {
         });
         getContentPane().setLayout(new AbsoluteLayout());
 
-        okButton.setText("OK");
+        okButton.setText("Edit");
         okButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 okButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(okButton, new AbsoluteConstraints(101, 79, 85, -1));
+        getContentPane().add(okButton, new AbsoluteConstraints(250, 66, 67, -1));
         getRootPane().setDefaultButton(okButton);
 
         cancelButton.setText("Cancel");
@@ -94,21 +103,26 @@ public class CopyDialog extends JDialog {
                 cancelButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(cancelButton, new AbsoluteConstraints(215, 79, 85, -1));
+        getContentPane().add(cancelButton, new AbsoluteConstraints(323, 66, 67, -1));
 
-        labelCopy.setText("Copy:");
-        getContentPane().add(labelCopy, new AbsoluteConstraints(10, 14, -1, -1));
-        getContentPane().add(fieldCopyFrom, new AbsoluteConstraints(49, 11, 341, -1));
-        getContentPane().add(fieldCopyTo, new AbsoluteConstraints(49, 42, 341, -1));
+        labelEditing.setText("Editing file:");
+        getContentPane().add(labelEditing, new AbsoluteConstraints(10, 11, -1, -1));
 
-        labelTo.setText("To:");
-        getContentPane().add(labelTo, new AbsoluteConstraints(10, 45, 29, -1));
+        actualFile = new File(actName);
+        labelFileToEdit.setText(actualFile.getName());
+        getContentPane().add(labelFileToEdit, new AbsoluteConstraints(74, 11, -1, -1));
+        getContentPane().add(fieldNewName, new AbsoluteConstraints(74, 36, 316, -1));
+
+        labelNewName.setText("New name:");
+        getContentPane().add(labelNewName, new AbsoluteConstraints(10, 39, -1, -1));
 
         pack();
     }
 
     private void okButtonActionPerformed(ActionEvent evt) {
-        BasicOperation.copyItem(new File(this.fieldCopyFrom.getText()), new File(fieldCopyTo.getText()));
+        String path = actualFile.getParent();
+        BasicOperation.renameItem(actualFile, new File(path+fieldNewName.getText()));
+        
         doClose(RET_OK);
     }
 
@@ -123,7 +137,7 @@ public class CopyDialog extends JDialog {
         doClose(RET_CANCEL);
     }
     
-    private void doClose(int retStatus) {
+    public void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
         dispose();

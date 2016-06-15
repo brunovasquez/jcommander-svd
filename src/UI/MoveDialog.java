@@ -21,27 +21,27 @@ import org.netbeans.lib.awtextra.AbsoluteLayout;
  *
  * @author Shirley Pinto
  */
-public class CopyDialog extends JDialog {
+public class MoveDialog extends JDialog {
     
     public static final int RET_CANCEL = 0;
     public static final int RET_OK = 1;
     private JButton cancelButton;
-    private JTextField fieldCopyFrom;
-    private JTextField fieldCopyTo;
-    private JLabel labelCopy;
-    private JLabel labelTo;
+    private JTextField fieldMoveFrom;
+    private JTextField fieldMoveTo;
+    private JLabel labelMoveFrom;
+    private JLabel labelMoveTo;
     private JButton okButton;
     private int returnStatus = RET_CANCEL;
     
     /**
-     * Creates new form CopyDialog
+     * Creates new form MoveDialog
      */
-    public CopyDialog(Frame parent, boolean modal, File from, File to) {
+    public MoveDialog(Frame parent, boolean modal, File from, File to) {
         super(parent, modal);
         initComponents();
         
-        this.fieldCopyFrom.setText(from.getPath());
-        this.fieldCopyTo.setText(to.getPath());
+        this.fieldMoveFrom.setText(from.getPath());
+        this.fieldMoveTo.setText(to.getPath());
                 
         // Close the dialog when Esc is pressed
         String cancelName = "cancel";
@@ -67,10 +67,10 @@ public class CopyDialog extends JDialog {
 
         okButton = new JButton();
         cancelButton = new JButton();
-        labelCopy = new JLabel();
-        fieldCopyFrom = new JTextField();
-        fieldCopyTo = new JTextField();
-        labelTo = new JLabel();
+        labelMoveFrom = new JLabel();
+        fieldMoveFrom = new JTextField();
+        fieldMoveTo = new JTextField();
+        labelMoveTo = new JLabel();
 
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent evt) {
@@ -96,19 +96,18 @@ public class CopyDialog extends JDialog {
         });
         getContentPane().add(cancelButton, new AbsoluteConstraints(215, 79, 85, -1));
 
-        labelCopy.setText("Copy:");
-        getContentPane().add(labelCopy, new AbsoluteConstraints(10, 14, -1, -1));
-        getContentPane().add(fieldCopyFrom, new AbsoluteConstraints(49, 11, 341, -1));
-        getContentPane().add(fieldCopyTo, new AbsoluteConstraints(49, 42, 341, -1));
+        labelMoveFrom.setText("Move:");
+        getContentPane().add(labelMoveFrom, new AbsoluteConstraints(10, 14, -1, -1));
+        getContentPane().add(fieldMoveFrom, new AbsoluteConstraints(49, 11, 341, -1));
+        getContentPane().add(fieldMoveTo, new AbsoluteConstraints(49, 42, 341, -1));
 
-        labelTo.setText("To:");
-        getContentPane().add(labelTo, new AbsoluteConstraints(10, 45, 29, -1));
-
+        labelMoveTo.setText("To:");
+        getContentPane().add(labelMoveTo, new AbsoluteConstraints(10, 45, 29, -1));
         pack();
     }
 
-    private void okButtonActionPerformed(ActionEvent evt) {
-        BasicOperation.copyItem(new File(this.fieldCopyFrom.getText()), new File(fieldCopyTo.getText()));
+    private void okButtonActionPerformed(ActionEvent evt) {  
+        BasicOperation.moveItem(new File(this.fieldMoveFrom.getText()), new File(fieldMoveTo.getText()));
         doClose(RET_OK);
     }
 
@@ -123,7 +122,7 @@ public class CopyDialog extends JDialog {
         doClose(RET_CANCEL);
     }
     
-    private void doClose(int retStatus) {
+    public void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
         dispose();

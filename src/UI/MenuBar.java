@@ -26,6 +26,5 @@ class MenuBar extends JMenuBar {
 
         jMenuEdit.setText("Edit");
         this.add(jMenuEdit);
-
     }  
 }
