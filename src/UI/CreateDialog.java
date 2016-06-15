@@ -6,9 +6,9 @@
 package UI;
 import java.util.ArrayList;
 import javax.swing.*;
-import src.Attribute;
-import src.AttributeHandler;
-import src.FolderItem;
+import Items.Attribute;
+import Items.AttributeHandler;
+import Items.FolderItem;
 import java.awt.event.*;
 
 /**

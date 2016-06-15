@@ -33,6 +33,9 @@ public class ActionButtons extends JPanel {
         jButtonCreate = new JButton();
 
         jButtonEdit.setText("Edit");
+        jButtonEdit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) { jButtonEditActionPerformed(evt);}
+        });
         this.add(jButtonEdit);
         jButtonSearch.setText("Search");
         this.add(jButtonSearch);
@@ -49,16 +52,19 @@ public class ActionButtons extends JPanel {
                  jButtonCreateActionPerformed(e);
             }
         });
-        
 
         jButtonCopy.setText("Copy");
         jButtonCopy.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) { jButtonCopyActionPerformed(evt); }        
         });
-        
         this.add(jButtonCopy);
+        
         jButtonMove.setText("Move");
+        jButtonMove.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) { jButtonMoveActionPerformed(evt); }        
+        });
         this.add(jButtonMove);
+        
         jButtonDelete.setText("Delete");
         this.add(jButtonDelete);
         
@@ -73,6 +79,22 @@ public class ActionButtons extends JPanel {
     */
     private void jButtonCopyActionPerformed(ActionEvent evt) {
          parent.getjPanelBody().jButtonCopyActionPerformed(evt);
+    }
+    
+    /**
+    * Method to activate the move action
+    * @param evt 
+    */
+    private void jButtonMoveActionPerformed(ActionEvent evt) {
+         parent.getjPanelBody().jButtonMoveActionPerformed(evt);
+    }
+    
+    /**
+    * Method to activate the edit action
+    * @param evt 
+    */
+    private void jButtonEditActionPerformed(ActionEvent evt) {
+         parent.getjPanelBody().jButtonEditActionPerformed(evt);
     }
     
     /**

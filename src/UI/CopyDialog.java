@@ -108,7 +108,6 @@ public class CopyDialog extends JDialog {
     }
 
     private void okButtonActionPerformed(ActionEvent evt) {
-        
         BasicOperation.copyItem(new File(this.fieldCopyFrom.getText()), new File(fieldCopyTo.getText()));
         doClose(RET_OK);
     }

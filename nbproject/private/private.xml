@@ -2,6 +2,30 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/Cursos/Dev%20Fun/Code/src/UI/MenuBar.java</file>
+            <file>file:/D:/Cursos/Dev%20Fun/Code/Test/ItemsTest/FileItemTest.java</file>
+            <file>file:/D:/Cursos/Dev%20Fun/Code/src/Utilities/BasicOperation.java</file>
+            <file>file:/D:/Cursos/Dev%20Fun/Code/Test/ItemsTest/FolderItemTest.java</file>
+            <file>file:/D:/Cursos/Dev%20Fun/Code/src/UI/BodyPanel.java</file>
+            <file>file:/D:/Cursos/Dev%20Fun/Code/Test/UtilitiesTest/DetectOSTest.java</file>
+            <file>file:/D:/Cursos/Dev%20Fun/Code/src/UI/CopyDialog.java</file>
+            <file>file:/D:/Cursos/Dev%20Fun/Code/Test/UtilitiesTest/BasicOperationTest.java</file>
+            <file>file:/D:/Cursos/Dev%20Fun/Code/Test/ItemsTest/AttributeTest.java</file>
+            <file>file:/D:/Cursos/Dev%20Fun/Code/Test/ItemsTest/AttributeHandlerTest.java</file>
+            <file>file:/D:/Cursos/Dev%20Fun/Code/src/UI/SearchDialog.java</file>
+            <file>file:/D:/Cursos/Dev%20Fun/Code/src/UI/DeleteConfirmation.java</file>
+            <file>file:/D:/Cursos/Dev%20Fun/Code/src/UI/JFrameJC.java</file>
+            <file>file:/D:/Cursos/Dev%20Fun/Code/src/UI/MainContainer.java</file>
+            <file>file:/D:/Cursos/Dev%20Fun/Code/nbproject/project.properties</file>
+            <file>file:/D:/Cursos/Dev%20Fun/Code/nbproject/private/private.xml</file>
+            <file>file:/D:/Cursos/Dev%20Fun/Code/src/Utilities/RunCommand.java</file>
+            <file>file:/D:/Cursos/Dev%20Fun/Code/src/UI/CreateDialog.java</file>
+            <file>file:/D:/Cursos/Dev%20Fun/Code/nbproject/private/private.properties</file>
+            <file>file:/D:/Cursos/Dev%20Fun/Code/src/UI/ActionButtons.java</file>
+            <file>file:/D:/Cursos/Dev%20Fun/Code/src/UI/MoveDialog.java</file>
+            <file>file:/D:/Cursos/Dev%20Fun/Code/src/Utilities/DetectOS.java</file>
+            <file>file:/D:/Cursos/Dev%20Fun/Code/src/UI/EditDialog.java</file>
+        </group>
     </open-files>
 </project-private>

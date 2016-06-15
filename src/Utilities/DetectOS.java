@@ -12,14 +12,14 @@ package Utilities;
  * @since   2016-05-15 
  * @author vania huayta
  */
-class DetectOS {
+public class DetectOS {
     private static String OS = System.getProperty("os.name").toLowerCase();
 
     /**
      * Method that return "true" when the OS is equals to Windows.
      * @return true when the OS is Windows.
      */
-    static boolean isWindows() {
+    public static boolean isWindows() {
         return (OS.contains("win"));
     }
 
@@ -27,7 +27,7 @@ class DetectOS {
      * Method that return "true" when the OS is equals to MacOS.
      * @return true when the OS is MacOS.
      */
-    static boolean isMac() {
+    public static boolean isMac() {
         return (OS.contains("mac"));
     }
 
@@ -35,7 +35,7 @@ class DetectOS {
      * Method that return "true" when the OS is equals to Unix, Linux.
      * @return true when the OS is Unix, Linux.
      */
-    static boolean isUnix() {
+    public static boolean isUnix() {
         return (OS.contains("nux") || OS.contains("nix") || OS.contains("aix"));
     }
 }

@@ -1,5 +1,7 @@
 package UI;
 
+import static UI.MoveDialog.RET_CANCEL;
+import Utilities.DetectOS;
 import java.awt.BorderLayout;
 import java.io.File;
 import java.nio.file.*;
@@ -34,11 +36,13 @@ public class BodyPanel extends JPanel {
     private JTable rightTable;
     private boolean onLeft;
     static String selectedPath;
-    private JFrame parent;
+    private JFrameJC parent;
+    private String separatorFiles;
 
  
-    public BodyPanel(JFrame parent) {
+    public BodyPanel(JFrameJC parent) {
         this.parent = parent;
+        separatorFiles = DetectOS.isWindows() ? "\\" : "//";
         jPanelLeft = new JPanel();
         jPanelRight = new JPanel();
         jPanelPathsBar = new JPanel();
@@ -123,20 +127,41 @@ public class BodyPanel extends JPanel {
      * Method to define the Copy action
      * @param evt 
      */
-    public void jButtonCopyActionPerformed(ActionEvent evt) {                                          
+    public void jButtonCopyActionPerformed(ActionEvent evt) {  
         if (onLeft) {
             CopyDialog copyDilog = new CopyDialog(this.parent, true, 
                     new File(this.selectedPath),
-                    new File(fieldPathR.getText()+"\\"+ new File(selectedPath).getName()));
+                    new File(fieldPathR.getText() + separatorFiles  + new File(selectedPath).getName()));
             copyDilog.setVisible(true);
             listFiles(fieldPathR.getText(), false);
         } else {
             CopyDialog copyDilog = new CopyDialog(this.parent, true, 
                     new File(this.selectedPath), 
-                    new File(fieldPathL.getText()+"\\"+ new File(selectedPath).getName()));
+                    new File(fieldPathL.getText() + separatorFiles + new File(selectedPath).getName()));
             copyDilog.setVisible(true);
             listFiles(fieldPathL.getText(), true);
         }
+    }
+    
+    /**
+     * Method to define the move action
+     * @param evt 
+     */
+    public void jButtonMoveActionPerformed(ActionEvent evt) {                                          
+        MoveDialog movedialog;
+        if (onLeft) {
+            movedialog = new MoveDialog(this.parent, true, 
+                    new File(this.selectedPath),
+                    new File(fieldPathR.getText() + separatorFiles + new File(selectedPath).getName()));
+        } else {
+            movedialog = new MoveDialog(this.parent, true, 
+                    new File(this.selectedPath), 
+                    new File(fieldPathL.getText() + separatorFiles + new File(selectedPath).getName()));
+        }
+        movedialog.setVisible(true);
+        listFiles(fieldPathR.getText(), false);
+        listFiles(fieldPathL.getText(), true);
+        movedialog.doClose(RET_CANCEL);
     }
     
     public void jButtonDeleteActionPerformed(ActionEvent evt) {
@@ -144,6 +169,23 @@ public class BodyPanel extends JPanel {
         del.setVisible(true);
         listFiles(fieldPathR.getText(), false);
         listFiles(fieldPathL.getText(), true);
+    } 
+    
+    public void jButtonEditActionPerformed(ActionEvent evt) {
+          EditDialog editDialog;
+        if (onLeft) {
+            editDialog = new EditDialog(parent, true, 
+                    this.selectedPath);
+            editDialog.setVisible(true);
+            listFiles(fieldPathR.getText(), false);
+            
+        } else {
+            editDialog = new EditDialog(parent, true, 
+                    this.selectedPath);
+            editDialog.setVisible(true);           
+            listFiles(fieldPathL.getText(), true);
+        }     
+        editDialog.doClose(RET_CANCEL);
     } 
     
     /**

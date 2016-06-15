@@ -62,7 +62,6 @@ public class DeleteConfirmation extends JDialog {
         jLabelDeleteText = new JLabel();
         jLabelPath = new JLabel();
         jLabelPath.setText(path);
-        
 
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent evt) { closeDialog(RET_CANCEL); }});

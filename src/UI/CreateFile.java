@@ -7,10 +7,10 @@ package UI;
 import java.awt.Component;
 import java.util.ArrayList;
 import javax.swing.*;
-import src.Attribute;
-import src.AttributeHandler;
+import Items.Attribute;
+import Items.AttributeHandler;
 import java.awt.event.*;
-import src.FileItem;
+import Items.FileItem;
 
 /**
  * UI  that  allow to  create  file  from Menu
